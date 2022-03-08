@@ -1,9 +1,6 @@
 export interface User {
-    id?: number;
-    FName: string;
-    MName: string;
-    LName: string;
+    account_id?: number;
+    account_type_id: number;
     username: string;
     password: string;
-    userType: string;
 }

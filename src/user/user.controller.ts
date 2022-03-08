@@ -40,8 +40,8 @@ export class UserController {
 
   @ApiOperation({ summary: 'Get Users by id', operationId: 'GetUsers' })
   @ApiResponse({ status: 200, type: UserDto })
-  @Get(':id')
-  async findOne(@Param('id') id: number): Promise<UserDto> {
+  @Get(':account_id')
+  async findOne(@Param('account_id') id: number): Promise<UserDto> {
     return this.usersService.findOne(id);
   }
   @ApiOperation({
@@ -49,8 +49,8 @@ export class UserController {
     operationId: 'UpdateUsers',
   })
   @ApiResponse({ status: 200, type: UserDto })
-  @Put(':id')
-  async update(@Param('id') id: number, @Body() job: UserDto) {
+  @Put(':account_id')
+  async update(@Param('account_id') id: number, @Body() job: UserDto) {
     return this.usersService.update(id, job);
   }
 
@@ -59,8 +59,8 @@ export class UserController {
     operationId: 'DeleteUsers',
   })
   @ApiResponse({ status: 200, type: UserDto })
-  @Delete(':id')
-  async delete(@Param('id') id: number) {
+  @Delete(':account_id')
+  async delete(@Param('account_id') id: number) {
     return this.usersService.deleteOne(id);
   }
 }
