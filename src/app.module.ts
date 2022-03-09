@@ -24,6 +24,10 @@ import { CandidateService } from './candidate/candidate.service';
 import { CandidateController } from './candidate/candidate.controller';
 import { ElectionService } from './election/election.service';
 import { ElectionController } from './election/election.controller';
+import { TempTallyService } from './temp-tally/temp-tally.service';
+import { TempTallyController } from './temp-tally/temp-tally.controller';
+import { PositionsService } from './positions/positions.service';
+import { PositionsController } from './positions/positions.controller';
 
 @Module({
   imports: [
@@ -40,7 +44,7 @@ import { ElectionController } from './election/election.controller';
       dropSchema: true,
     }),
   ],
-  controllers: [UserController, VoterController, RepresentativeController, AdminController, PrimeMinisterController, AccountTypeController, StudentController, CandidateController, ElectionController],
-  providers: [UserService, VoterService, RepresentativeService, AdminService, PrimeMinisterService, AccountTypeService, StudentService, CandidateService, ElectionService],
+  controllers: [UserController, VoterController, RepresentativeController, AdminController, PrimeMinisterController, AccountTypeController, StudentController, CandidateController, ElectionController, TempTallyController, PositionsController],
+  providers: [UserService, VoterService, RepresentativeService, AdminService, PrimeMinisterService, AccountTypeService, StudentService, CandidateService, ElectionService, TempTallyService, PositionsService],
 })
 export class AppModule {}
