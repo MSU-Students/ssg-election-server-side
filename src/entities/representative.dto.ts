@@ -8,10 +8,10 @@ export class RepresentativeDto implements Representative {
   representative_id?: number;
 
   @ApiProperty({ example: '1331' })
-  @Column()
+  @Column({ type: 'int' })
   primeMinister_id: number;
 
   @ApiProperty({ example: '201812291' })
-  @Column()
+  @Column({ type: 'int' })
   voter_id: number;
 }
