@@ -1,20 +1,19 @@
 import {
-    Body,
-    Controller,
-    Delete,
-    Get,
-    Param,
-    Post,
-    Put,
-  } from '@nestjs/common';
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { VoterDto } from 'src/entities/voter.dto';
 import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { VoterService } from './voter.service';
 
-
 @Controller('voter')
 export class VoterController {
-    constructor(private voterService: VoterService) {}
+  constructor(private voterService: VoterService) {}
 
   @ApiBody({ type: VoterDto })
   @ApiOperation({
