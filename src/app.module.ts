@@ -18,6 +18,12 @@ import { PrimeMinisterController } from './prime-minister/prime-minister.control
 import { PrimeMinisterService } from './prime-minister/prime-minister.service';
 import { AccountTypeController } from './account-type/account-type.controller';
 import { AccountTypeService } from './account-type/account-type.service';
+import { StudentService } from './student/student.service';
+import { StudentController } from './student/student.controller';
+import { CandidateService } from './candidate/candidate.service';
+import { CandidateController } from './candidate/candidate.controller';
+import { ElectionService } from './election/election.service';
+import { ElectionController } from './election/election.controller';
 
 @Module({
   imports: [
@@ -34,7 +40,7 @@ import { AccountTypeService } from './account-type/account-type.service';
       dropSchema: true,
     }),
   ],
-  controllers: [UserController, VoterController, RepresentativeController, AdminController, PrimeMinisterController, AccountTypeController],
-  providers: [UserService, VoterService, RepresentativeService, AdminService, PrimeMinisterService, AccountTypeService],
+  controllers: [UserController, VoterController, RepresentativeController, AdminController, PrimeMinisterController, AccountTypeController, StudentController, CandidateController, ElectionController],
+  providers: [UserService, VoterService, RepresentativeService, AdminService, PrimeMinisterService, AccountTypeService, StudentService, CandidateService, ElectionService],
 })
 export class AppModule {}
