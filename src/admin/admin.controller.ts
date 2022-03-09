@@ -1,28 +1,27 @@
 import {
-    Body,
-    Controller,
-    Delete,
-    Get,
-    Param,
-    Post,
-    Put,
-  } from '@nestjs/common';
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import {
-    ApiBearerAuth,
-    ApiBody,
-    ApiOperation,
-    ApiResponse,
-  } from '@nestjs/swagger';
+  ApiBearerAuth,
+  ApiBody,
+  ApiOperation,
+  ApiResponse,
+} from '@nestjs/swagger';
 
 import { AdminDto } from 'src/entities/admin.dto';
 import { AdminService } from './admin.service';
 
-
 @Controller('admin')
 export class AdminController {
-    constructor(private adminService: AdminService) {}
+  constructor(private adminService: AdminService) {}
 
-    //post new Admin
+  //post new Admin
   @ApiBody({ type: AdminDto })
   @ApiOperation({
     summary: 'Add new Admin',
@@ -41,7 +40,7 @@ export class AdminController {
     return this.adminService.findAll();
   }
 
-    //Select admin_id from Admin
+  //Select admin_id from Admin
   @ApiOperation({ summary: 'Get Admin by id', operationId: 'GetAdmin' })
   @ApiResponse({ status: 200, type: AdminDto })
   @Get(':admin_id')

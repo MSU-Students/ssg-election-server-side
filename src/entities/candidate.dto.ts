@@ -16,11 +16,11 @@ export class CandidateDto implements Candidate {
 
   @ApiProperty()
   @Column({ type: 'int' })
-  position_id?: number;
+  position_id: number;
 
   @ApiProperty({ example: '01' })
   @Column({ type: 'int' })
-  election_id?: number;
+  election_id: number;
 
   @ApiProperty({ example: '2020' })
   @Column({ type: 'int' })
