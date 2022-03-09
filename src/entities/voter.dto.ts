@@ -19,7 +19,7 @@ export class VoterDto implements Voter {
   @Column()
   account_id: number;
 
-  @ApiProperty({ example: 'February 12,2022' })
+  @ApiProperty({ example: 'February 12, 2022' })
   @Column({ length: 100 })
   date: string;
 }

@@ -8,8 +8,6 @@ import {
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { Student } from '../interfaces/student.interface';
-import { Blob } from 'buffer';
-
 @Entity('student')
 export class StudentDto implements Student {
   @PrimaryGeneratedColumn()

@@ -17,7 +17,7 @@ export class TempTallyController {
 
   @ApiBody({ type: TempTallyDto })
   @ApiOperation({
-    summary: 'Add new Tally Minister',
+    summary: 'Add new Tally ',
     operationId: 'AddTally',
   })
   @ApiResponse({ status: 200, type: TempTallyDto })
@@ -26,7 +26,7 @@ export class TempTallyController {
     return this.TempTallyService.create(job);
   }
 
-  @ApiOperation({ summary: 'Get all Tally Ministers', operationId: 'GetTally' })
+  @ApiOperation({ summary: 'Get all Tally s', operationId: 'GetTally' })
   @ApiResponse({ status: 200, type: TempTallyDto })
   @Get()
   async findAll(): Promise<TempTallyDto[]> {
@@ -34,7 +34,7 @@ export class TempTallyController {
   }
 
   @ApiOperation({
-    summary: 'Get Tally Minister by id',
+    summary: 'Get Tally by id',
     operationId: 'GetTally',
   })
   @ApiResponse({ status: 200, type: TempTallyDto })
@@ -43,7 +43,7 @@ export class TempTallyController {
     return this.TempTallyService.findOne(id);
   }
   @ApiOperation({
-    summary: 'Update Tally Minister by id',
+    summary: 'Update Tally by id',
     operationId: 'UpdateTally',
   })
   @ApiResponse({ status: 200, type: TempTallyDto })
@@ -53,7 +53,7 @@ export class TempTallyController {
   }
 
   @ApiOperation({
-    summary: 'Delete Tally Minister by id',
+    summary: 'Delete Tally by id',
     operationId: 'DeleteTally',
   })
   @ApiResponse({ status: 200, type: TempTallyDto })

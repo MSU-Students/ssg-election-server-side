@@ -14,7 +14,7 @@ export class ElectionDto implements Election {
   @PrimaryGeneratedColumn()
   election_id?: number;
 
-  @ApiProperty()
+  @ApiProperty({ example: '1' })
   @Column({ type: 'int' })
   election_sem: number;
 
@@ -22,11 +22,11 @@ export class ElectionDto implements Election {
   @Column({ type: 'int' })
   election_year: number;
 
-  @ApiProperty({ example: '2021' })
-  @Column({ type: 'date' })
-  election_date: number;
+  @ApiProperty({ example: 'February 12, 2022' })
+  @Column({ length: 100 })
+  election_date: string;
 
-  @ApiProperty({ example: '8' })
-  @Column({ type: 'time' })
-  election_time: number;
+  @ApiProperty({ example: '8:00 PM' })
+  @Column({ length: 100 })
+  election_time: string;
 }
