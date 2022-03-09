@@ -22,7 +22,7 @@ export class AdminDto implements Admin{
     @Column({ length: 100 })
     first_name: string;
 
-    @ApiProperty({ example: 'Omars' })
+    @ApiProperty({ example: 'Omar' })
     @Column({ length: 100 })
     last_name: string;
 
