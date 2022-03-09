@@ -8,18 +8,20 @@ import {
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { Student } from '../interfaces/student.interface';
+import { Blob } from 'buffer';
 
 @Entity('student')
 export class StudentDto implements Student {
-  @ApiProperty({ example: '201811518' })
-  @Column()
+  @PrimaryGeneratedColumn()
   student_id?: number;
 
-  @PrimaryGeneratedColumn()
-  account_id?: number;
+  @ApiProperty({ example: '01' })
+  @Column({ type: 'int' })
+  account_id: number;
 
-  @PrimaryGeneratedColumn()
-  school_id?: number;
+  @ApiProperty({ example: '01' })
+  @Column({ type: 'int' })
+  school_id: number;
 
   @ApiProperty({ example: 'Najmah' })
   @Column({ length: 100 })

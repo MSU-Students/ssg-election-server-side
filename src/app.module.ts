@@ -1,8 +1,10 @@
+import { StudentAcademicYrDto } from './entities/student-academic-yr.dto';
 import { AccountTypeDto } from './entities/account-type.dto';
 import { PrimeMinisterDto } from './entities/prime-minister.dto';
 import { AdminDto } from './entities/admin.dto';
 import { RepresentativeDto } from './entities/representative.dto';
 import { VoterDto } from './entities/voter.dto';
+import { StudentDto } from './entities/student.dto';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserService } from './user/user.service';
@@ -30,6 +32,10 @@ import { PositionsService } from './positions/positions.service';
 import { PositionsController } from './positions/positions.controller';
 import { StudentAcademicYrService } from './student-academic-yr/student-academic-yr.service';
 import { StudentAcademicYrController } from './student-academic-yr/student-academic-yr.controller';
+import { ElectionDto } from './entities/election.dto';
+import { CandidateDto } from './entities/candidate.dto';
+import { TempTallyDto } from './entities/temp-tally.dto';
+import { PositionsDto } from './entities/positions.dto';
 
 @Module({
   imports: [
@@ -40,6 +46,12 @@ import { StudentAcademicYrController } from './student-academic-yr/student-acade
       AdminDto,
       PrimeMinisterDto,
       AccountTypeDto,
+      StudentDto,
+      CandidateDto,
+      ElectionDto,
+      TempTallyDto,
+      PositionsDto,
+      StudentAcademicYrDto,
     ]),
     TypeOrmModule.forRoot({
       type: 'mysql',
@@ -55,6 +67,12 @@ import { StudentAcademicYrController } from './student-academic-yr/student-acade
         AdminDto,
         PrimeMinisterDto,
         AccountTypeDto,
+        StudentDto,
+        CandidateDto,
+        ElectionDto,
+        TempTallyDto,
+        PositionsDto,
+        StudentAcademicYrDto,
       ],
       synchronize: true,
       dropSchema: true,

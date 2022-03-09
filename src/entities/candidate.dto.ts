@@ -24,5 +24,5 @@ export class CandidateDto implements Candidate {
 
   @ApiProperty({ example: '2020' })
   @Column({ type: 'int' })
-  student_academic_yr_id: number;
+  studentAcademicYr_id: number;
 }

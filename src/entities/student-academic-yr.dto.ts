@@ -9,10 +9,10 @@ import {
 import { ApiProperty } from '@nestjs/swagger';
 import { StudentAcademicYr } from './../interfaces/student-academic-yr.interface';
 
-@Entity('student_academic_yr')
+@Entity('studentAcademicYr')
 export class StudentAcademicYrDto implements StudentAcademicYr {
   @PrimaryGeneratedColumn()
-  student_academic_yr_id?: number;
+  studentAcademicYr_id?: number;
 
   @ApiProperty({ example: '201811518' })
   @Column({ type: 'int' })

@@ -6,5 +6,5 @@ export interface StudentAcademicYr {
   course: string;
   year_admitted: number;
   academic_year: number;
-  current_year: number;
+  current_yr_level: number;
 }
