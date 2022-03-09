@@ -17,7 +17,7 @@ export class PrimeMinisterDto implements PrimeMinister {
   primeMinister_id?: number;
 
   @ApiProperty({ example: '01' })
-  @Column()
+  @Column({ type: 'int' })
   election_id: number;
 
   @OneToMany(() => VoterDto, (voter) => voter.prime)
