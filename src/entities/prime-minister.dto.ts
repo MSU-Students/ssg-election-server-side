@@ -1,9 +1,6 @@
 import {
   Column,
   Entity,
-  Generated,
-  JoinColumn,
-  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -17,6 +14,9 @@ export class PrimeMinisterDto implements PrimeMinister {
   primeMinister_id?: number;
 
   @ApiProperty({ example: '01' })
-  @Column({ type: 'int' })
+  @Column()
   election_id: number;
+
+  @OneToMany(() => VoterDto, (voter) => voter.prime)
+  voter: VoterDto[];
 }

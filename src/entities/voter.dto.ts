@@ -1,6 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Voter } from '../interfaces/voter.interface';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
+import { PrimeMinisterDto } from './prime-minister.dto';
 
 @Entity('Voter')
 export class VoterDto implements Voter {
@@ -15,11 +22,10 @@ export class VoterDto implements Voter {
   @Column()
   election_id: number;
 
-  @ApiProperty({ example: '201812291' })
-  @Column()
-  account_id: number;
-
-  @ApiProperty({ example: 'February 12, 2022' })
+  @ApiProperty({ example: 'February 12,2022' })
   @Column({ length: 100 })
   date: string;
+
+  @ManyToOne(() => PrimeMinisterDto, prime => prime.voter)
+  prime: PrimeMinisterDto;
 }

@@ -1,19 +1,23 @@
 import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Put,
-} from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { PrimeMinisterService } from './prime-minister.service';
-import { PrimeMinisterDto } from 'src/entities/prime-minister.dto';
+    Body,
+    Controller,
+    Delete,
+    Get,
+    Param,
+    Post,
+    Put,
+  } from '@nestjs/common';
+  import {
+    ApiBody,
+    ApiOperation,
+    ApiResponse,
+  } from '@nestjs/swagger';
+  import { PrimeMinisterService } from './prime-minister.service';
+  import { PrimeMinisterDto } from 'src/entities/prime-minister.dto';
 
 @Controller('prime-minister')
 export class PrimeMinisterController {
-  constructor(private PrimeMinisterService: PrimeMinisterService) {}
+    constructor(private PrimeMinisterService: PrimeMinisterService) {}
 
   @ApiBody({ type: PrimeMinisterDto })
   @ApiOperation({
@@ -26,22 +30,17 @@ export class PrimeMinisterController {
     return this.PrimeMinisterService.create(job);
   }
 
-  @ApiOperation({ summary: 'Get all Prime Ministers', operationId: 'GetPrime' })
+  @ApiOperation({ summary: 'Get all Prime Ministers', operationId: 'GetPrimes' })
   @ApiResponse({ status: 200, type: PrimeMinisterDto })
   @Get()
   async findAll(): Promise<PrimeMinisterDto[]> {
     return this.PrimeMinisterService.findAll();
   }
 
-  @ApiOperation({
-    summary: 'Get Prime Minister by id',
-    operationId: 'GetPrime',
-  })
+  @ApiOperation({ summary: 'Get Prime Minister by id', operationId: 'GetPrime' })
   @ApiResponse({ status: 200, type: PrimeMinisterDto })
   @Get(':primeMinister_id')
-  async findOne(
-    @Param('primeMinister_id') id: number,
-  ): Promise<PrimeMinisterDto> {
+  async findOne(@Param('primeMinister_id') id: number): Promise<PrimeMinisterDto> {
     return this.PrimeMinisterService.findOne(id);
   }
   @ApiOperation({
@@ -50,10 +49,7 @@ export class PrimeMinisterController {
   })
   @ApiResponse({ status: 200, type: PrimeMinisterDto })
   @Put(':primeMinister_id')
-  async update(
-    @Param('primeMinister_id') id: number,
-    @Body() job: PrimeMinisterDto,
-  ) {
+  async update(@Param('primeMinister_id') id: number, @Body() job: PrimeMinisterDto) {
     return this.PrimeMinisterService.update(id, job);
   }
 

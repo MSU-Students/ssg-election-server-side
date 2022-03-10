@@ -1,19 +1,19 @@
 import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Put,
-} from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { AccountTypeDto } from 'src/entities/account-type.dto';
-import { AccountTypeService } from './account-type.service';
+    Body,
+    Controller,
+    Delete,
+    Get,
+    Param,
+    Post,
+    Put,
+  } from '@nestjs/common';
+  import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
+  import { AccountTypeDto } from 'src/entities/account-type.dto';
+  import { AccountTypeService } from './account-type.service';
 
 @Controller('account-type')
 export class AccountTypeController {
-  constructor(private AccountTypeService: AccountTypeService) {}
+    constructor(private AccountTypeService: AccountTypeService) {}
 
   @ApiBody({ type: AccountTypeDto })
   @ApiOperation({
@@ -26,20 +26,14 @@ export class AccountTypeController {
     return this.AccountTypeService.create(job);
   }
 
-  @ApiOperation({
-    summary: 'Get all Account Type',
-    operationId: 'GetAccountType',
-  })
+  @ApiOperation({ summary: 'Get all Account Type', operationId: 'GetAccountTypes' })
   @ApiResponse({ status: 200, type: AccountTypeService })
   @Get()
   async findAll(): Promise<AccountTypeDto[]> {
     return this.AccountTypeService.findAll();
   }
 
-  @ApiOperation({
-    summary: 'Get Account Type by id',
-    operationId: 'GetAccountType',
-  })
+  @ApiOperation({ summary: 'Get Account Type by id', operationId: 'GetAccountType' })
   @ApiResponse({ status: 200, type: AccountTypeDto })
   @Get(':account_type_id')
   async findOne(@Param('account_type_id') id: number): Promise<AccountTypeDto> {
@@ -51,10 +45,7 @@ export class AccountTypeController {
   })
   @ApiResponse({ status: 200, type: AccountTypeDto })
   @Put(':account_type_id')
-  async update(
-    @Param('account_type_id') id: number,
-    @Body() job: AccountTypeDto,
-  ) {
+  async update(@Param('account_type_id') id: number, @Body() job: AccountTypeDto) {
     return this.AccountTypeService.update(id, job);
   }
 

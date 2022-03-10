@@ -10,6 +10,7 @@ async function bootstrap() {
     .setDescription('The ssg-election API description')
     .setVersion('1.0')
     .addTag('ssg election')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

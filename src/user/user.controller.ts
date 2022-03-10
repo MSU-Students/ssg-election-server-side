@@ -13,12 +13,16 @@ import {
   ApiOperation,
   ApiResponse,
 } from '@nestjs/swagger';
-import { UserDto } from '../entities/user.dto';
+import { AuthService } from './auth.service';
+import { UserDto } from './user.entity';
 import { UserService } from './user.service';
 
 @Controller('users')
 export class UserController {
-  constructor(private usersService: UserService) {}
+  constructor(
+    private usersService: UserService,
+    private authService: AuthService,
+  ) {}
 
   @ApiBody({ type: UserDto })
   @ApiOperation({
@@ -26,9 +30,9 @@ export class UserController {
     operationId: 'AddUsers',
   })
   @ApiResponse({ status: 200, type: UserDto })
-  @Post()
-  async create(@Body() job: UserDto): Promise<UserDto> {
-    return this.usersService.create(job);
+  @Post('/create')
+  create(@Body() user: UserDto) {
+    return this.authService.register(user);
   }
 
   @ApiOperation({ summary: 'Get all Users', operationId: 'GetUserss' })
@@ -42,8 +46,13 @@ export class UserController {
   @ApiResponse({ status: 200, type: UserDto })
   @Get(':account_id')
   async findOne(@Param('account_id') id: number): Promise<UserDto> {
-    return this.usersService.findOne(id);
+    const user = await this.usersService.findOne(id);
+    return {
+      ...user,
+      password: undefined,
+    };
   }
+
   @ApiOperation({
     summary: 'Update Users by id',
     operationId: 'UpdateUsers',
