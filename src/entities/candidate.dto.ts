@@ -25,4 +25,8 @@ export class CandidateDto implements Candidate {
   @ApiProperty({ example: '2020' })
   @Column({ type: 'int' })
   studentAcademicYr_id: number;
+
+  @ApiProperty({ example: 'Time is gold.' })
+  @Column({ length: 1000 })
+  quote: string;
 }

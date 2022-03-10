@@ -25,7 +25,19 @@ export class StudentDto implements Student {
   @Column({ length: 100 })
   first_name: string;
 
+  @ApiProperty({ example: 'Angni' })
+  @Column({ length: 100 })
+  middle_name: string;
+
   @ApiProperty({ example: 'Omar' })
   @Column({ length: 100 })
   last_name: string;
+
+  @ApiProperty({ default: '', required: false })
+  @Column({ length: 100, nullable: true })
+  suffix: string;
+
+  @ApiProperty({ default: 'najmahomar@gmail.com', required: false })
+  @Column({ length: 100, nullable: true })
+  email: string;
 }
