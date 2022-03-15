@@ -12,6 +12,11 @@ async function bootstrap() {
     .addTag('ssg-election')
     .addBearerAuth()
     .build();
+    app.enableCors({
+      origin: true,
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+      credentials: true,
+    });
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
