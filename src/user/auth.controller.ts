@@ -1,4 +1,3 @@
-import { Entity } from 'typeorm';
 import { UserService } from './user.service';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { LocalAuthGuard } from './local.auth.guard';
@@ -19,7 +18,7 @@ import {
   ApiResponse,
 } from '@nestjs/swagger';
 import { LoginUserDto, RefreshDto, AccessTokenDto } from './user.dto';
-import { UserDto } from './user.Entity';
+import { UserDto } from './user.entity';
 
 @Controller('auth')
 export class AuthController {
@@ -33,7 +32,7 @@ export class AuthController {
   @ApiResponse({ status: 200, type: UserDto })
   @Post('/register')
   create(@Body() user: UserDto) {
-    if (user.refreshToken == 'eSugo') {
+    if (user.refreshToken == 'ssg-election') {
       return this.authService.register({
         ...user,
         refreshToken: undefined,
@@ -98,6 +97,7 @@ export class AuthController {
   })
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
+  @ApiResponse({ status: 200, type: UserDto })
   @Get('profile')
   async getProfile(@Request() req) {
     const user = await this.userService.findOne(req.user.userId);

@@ -3,8 +3,8 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export interface IUser {
   account_id?: number;
-  username: string;
-  password: string;
+  username?: string;
+  password?: string;
   status: 'active' | 'disabled';
 }
 
@@ -12,13 +12,13 @@ export class RegisterUserDto implements IUser {
   @PrimaryGeneratedColumn()
   account_id?: number;
 
-  @ApiProperty({ example: '12291' })
+  @ApiProperty({ example: 'user' })
   @Column({ length: 100 })
-  username: string;
+  username?: string;
 
-  @ApiProperty({ example: 'e34r' })
+  @ApiProperty({ example: 'user' })
   @Column({ length: 100 })
-  password: string;
+  password?: string;
 
   @ApiProperty({ default: 'active' })
   @Column({ length: 100 })
@@ -28,9 +28,9 @@ export class RegisterUserDto implements IUser {
 export class LoginUserDto implements IUser {
   account_id?: number;
   @ApiProperty()
-  username: string;
+  username?: string;
   @ApiProperty()
-  password: string;
+  password?: string;
   status: 'active' | 'disabled';
 }
 

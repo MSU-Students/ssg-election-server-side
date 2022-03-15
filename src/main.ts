@@ -7,9 +7,9 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('SSG Election')
-    .setDescription('The ssg-election API description')
+    .setDescription('The SSG Election API')
     .setVersion('1.0')
-    .addTag('ssg election')
+    .addTag('ssg-election')
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
