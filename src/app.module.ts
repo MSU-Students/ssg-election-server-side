@@ -37,6 +37,9 @@ import { ElectionService } from './election/election.service';
 import { TempTallyService } from './temp-tally/temp-tally.service';
 import { PositionsService } from './positions/positions.service';
 import { StudentAcademicYrService } from './student-academic-yr/student-academic-yr.service';
+import { MediaService } from './media/media.service';
+import { MediaController } from './media/media.controller';
+import { MediaDto } from './entities/media.dto';
 
 @Module({
   imports: [
@@ -53,6 +56,7 @@ import { StudentAcademicYrService } from './student-academic-yr/student-academic
       TempTallyDto,
       PositionsDto,
       StudentAcademicYrDto,
+      MediaDto,
     ]),
     TypeOrmModule.forRoot({
       type: 'mysql',
@@ -74,6 +78,7 @@ import { StudentAcademicYrService } from './student-academic-yr/student-academic
         TempTallyDto,
         PositionsDto,
         StudentAcademicYrDto,
+        MediaDto,
       ],
       synchronize: true,
       dropSchema: true,
@@ -93,6 +98,7 @@ import { StudentAcademicYrService } from './student-academic-yr/student-academic
     TempTallyController,
     PositionsController,
     StudentAcademicYrController,
+    MediaController,
   ],
   providers: [
     UserService,
@@ -107,6 +113,7 @@ import { StudentAcademicYrService } from './student-academic-yr/student-academic
     TempTallyService,
     PositionsService,
     StudentAcademicYrService,
+    MediaService,
   ],
 })
 export class AppModule {}
