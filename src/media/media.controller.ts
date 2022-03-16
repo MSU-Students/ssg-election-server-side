@@ -36,12 +36,22 @@ export class MediaController {
       },
     },
   })
+
+  @ApiOperation({
+    summary: 'Upload Media',
+    operationId: 'UploadMedia',
+  })
   @ApiResponse({ status: 201, type: MediaDto })
   @Post('/uploadFile')
   @UseInterceptors(FileInterceptor('file'))
   async upload(@UploadedFile() file: Express.Multer.File) {
     return await this.mediaService.uploadFile(file);
   }
+
+  @ApiOperation({
+    summary: 'Get Media',
+    operationId: 'GetMedia',
+  })
 
   @Get(':id')
   async downloadFile(@Param('id') id: number, @Res() res: Response) {

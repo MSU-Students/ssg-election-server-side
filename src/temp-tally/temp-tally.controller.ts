@@ -26,7 +26,7 @@ export class TempTallyController {
     return this.TempTallyService.create(job);
   }
 
-  @ApiOperation({ summary: 'Get all Tally s', operationId: 'GetTally' })
+  @ApiOperation({ summary: 'Get all Tally s', operationId: 'GetTallies' })
   @ApiResponse({ status: 200, type: TempTallyDto })
   @Get()
   async findAll(): Promise<TempTallyDto[]> {

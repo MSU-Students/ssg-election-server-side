@@ -40,7 +40,7 @@ export class PositionsController {
   }
 
   //Select positions_id from Positions
-  @ApiOperation({ summary: 'Get Positions by id', operationId: 'GetPositions' })
+  @ApiOperation({ summary: 'Get Positions by id', operationId: 'GetPosition' })
   @ApiResponse({ status: 200, type: PositionsDto })
   @Get(':positions_id')
   async findOne(@Param('positions_id') id: number): Promise<PositionsDto> {

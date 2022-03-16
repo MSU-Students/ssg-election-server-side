@@ -32,7 +32,7 @@ export class CandidateController {
     return this.candidateService.create(job);
   }
   //Select * from candidate
-  @ApiOperation({ summary: 'Get all Candidate', operationId: 'GetCandidate' })
+  @ApiOperation({ summary: 'Get all Candidate', operationId: 'GetCandidates' })
   @ApiResponse({ status: 200, type: CandidateDto })
   @Get()
   async findAll(): Promise<CandidateDto[]> {

@@ -32,7 +32,7 @@ export class ElectionController {
     return this.electionService.create(job);
   }
   //Select * from election
-  @ApiOperation({ summary: 'Get all Election', operationId: 'GetElection' })
+  @ApiOperation({ summary: 'Get all Election', operationId: 'GetElections' })
   @ApiResponse({ status: 200, type: ElectionDto })
   @Get()
   async findAll(): Promise<ElectionDto[]> {

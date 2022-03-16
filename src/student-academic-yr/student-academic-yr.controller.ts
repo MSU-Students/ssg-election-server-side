@@ -30,7 +30,7 @@ export class StudentAcademicYrController {
 
   @ApiOperation({
     summary: 'Get all Student Academic Years',
-    operationId: 'GetStudentAcademicYear',
+    operationId: 'GetStudentAcademicYears',
   })
   @ApiResponse({ status: 200, type: StudentAcademicYrDto })
   @Get()
