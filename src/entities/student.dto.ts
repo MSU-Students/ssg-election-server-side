@@ -1,13 +1,17 @@
+import { StudentAcademicYrDto } from 'src/entities/student-academic-yr.dto';
 import {
   Column,
   Entity,
   Generated,
   JoinColumn,
   ManyToOne,
+  OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { Student } from '../interfaces/student.interface';
+import { UserDto } from '../user/user.entity';
 @Entity('student')
 export class StudentDto implements Student {
   @PrimaryGeneratedColumn()
@@ -40,4 +44,11 @@ export class StudentDto implements Student {
   @ApiProperty({ default: 'najmahomar@gmail.com', required: false })
   @Column({ length: 100, nullable: true })
   email: string;
+
+  @OneToOne(() => UserDto)
+  @JoinColumn({name: 'user_id'})
+  user: UserDto;
+
+  @OneToMany(() => StudentAcademicYrDto, (studentyr) => studentyr.student)
+  studentyr: StudentAcademicYrDto[];
 }

@@ -2,7 +2,7 @@ import { Media } from '../interfaces/media.interface';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 
-@Entity('productImage')
+@Entity('profileImage')
 export class MediaDto implements Media {
   @PrimaryGeneratedColumn()
   id?: number;
@@ -19,4 +19,6 @@ export class MediaDto implements Media {
     type: 'mediumblob',
   })
   data: Uint8Array;
+
+  
 }
