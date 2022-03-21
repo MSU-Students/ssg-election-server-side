@@ -15,6 +15,10 @@ export class UserDto implements User {
   @Column({ length: 100 })
   password: string;
 
+  @ApiProperty({ default: 'voter' })
+  @Column({ length: 100 })
+  userType: 'voter' | 'admin' | 'rep' | 'ssg';
+
   @ApiProperty({ default: 'active' })
   @Column({ length: 100 })
   status: 'active' | 'disabled';

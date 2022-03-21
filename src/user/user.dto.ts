@@ -6,6 +6,7 @@ export interface IUser {
   username?: string;
   password?: string;
   status: 'active' | 'disabled';
+  userType: string;
 }
 
 export class RegisterUserDto implements IUser {
@@ -23,9 +24,14 @@ export class RegisterUserDto implements IUser {
   @ApiProperty({ default: 'active' })
   @Column({ length: 100 })
   status: 'active' | 'disabled';
+
+  @ApiProperty({ default: 'voter' })
+  @Column({ length: 100 })
+  userType: 'voter' | 'admin' | 'rep' | 'ssg';
 }
 
 export class LoginUserDto implements IUser {
+  userType: string;
   account_id?: number;
   @ApiProperty()
   username?: string;

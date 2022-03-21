@@ -1,3 +1,4 @@
+import { VoterDto } from 'src/entities/voter.dto';
 import {
   Column,
   Entity,
@@ -21,4 +22,7 @@ export class ElectionDto implements Election {
   @ApiProperty({ example: '8:00 PM' })
   @Column({ length: 100 })
   election_time: string;
+
+  @ManyToOne(() => VoterDto, (voter) => voter.election)
+  voter: VoterDto[];
 }

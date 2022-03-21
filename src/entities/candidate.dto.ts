@@ -1,3 +1,5 @@
+import { StudentAcademicYrDto } from 'src/entities/student-academic-yr.dto';
+import { StudentAcademicYr } from './../interfaces/student-academic-yr.interface';
 import {
   Column,
   Entity,
@@ -14,9 +16,9 @@ export class CandidateDto implements Candidate {
   @PrimaryGeneratedColumn()
   candidate_id?: number;
 
-  @ApiProperty()
-  @Column({ type: 'int' })
-  position_id: number;
+  @ApiProperty({ example: 'Prime Minister' })
+  @Column({ length: 1000 })
+  position_type: 'voter' | 'admin' | 'rep' | 'ssg';
 
   @ApiProperty({ example: '01' })
   @Column({ type: 'int' })
@@ -29,4 +31,7 @@ export class CandidateDto implements Candidate {
   @ApiProperty({ example: 'Time is gold.' })
   @Column({ length: 1000 })
   quote: string;
+
+  @ManyToOne(() => StudentAcademicYrDto, studentyr => studentyr.candidate)
+  studentyr: StudentAcademicYrDto;
 }

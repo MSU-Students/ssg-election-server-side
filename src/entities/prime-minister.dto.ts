@@ -1,7 +1,10 @@
+import { ElectionDto } from 'src/entities/election.dto';
 import {
   Column,
   Entity,
   OneToMany,
+  OneToOne,
+  JoinColumn,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
@@ -17,6 +20,8 @@ export class PrimeMinisterDto implements PrimeMinister {
   @Column()
   election_id: number;
 
-  @OneToMany(() => VoterDto, (voter) => voter.prime)
-  voter: VoterDto[];
+  @OneToOne(() => ElectionDto)
+  @JoinColumn()
+  user: ElectionDto;
+
 }

@@ -1,3 +1,4 @@
+import { ElectionDto } from 'src/entities/election.dto';
 import { ApiProperty } from '@nestjs/swagger';
 import { Voter } from '../interfaces/voter.interface';
 import {
@@ -26,6 +27,7 @@ export class VoterDto implements Voter {
   @Column({ length: 100 })
   date: string;
 
-  @ManyToOne(() => PrimeMinisterDto, prime => prime.voter)
-  prime: PrimeMinisterDto;
+
+  @ManyToOne(() => ElectionDto, election => election.voter)
+  election: ElectionDto;
 }

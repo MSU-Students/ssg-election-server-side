@@ -1,9 +1,12 @@
+import { CandidateDto } from 'src/entities/candidate.dto';
+import { Candidate } from 'src/interfaces/candidate.interface';
 import {
   Column,
   Entity,
   Generated,
   JoinColumn,
   ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
@@ -21,4 +24,8 @@ export class TempTallyDto implements TempTally {
   @ApiProperty({ example: '01' })
   @Column({ type: 'int' })
   election_id: number;
+
+  @OneToOne(() => CandidateDto)
+  @JoinColumn({name: 'candidate_id'})
+  candidate: CandidateDto;
 }

@@ -1,9 +1,12 @@
+import { CandidateDto } from 'src/entities/candidate.dto';
+import { StudentDto } from 'src/entities/student.dto';
 import {
   Column,
   Entity,
   Generated,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
@@ -41,4 +44,11 @@ export class StudentAcademicYrDto implements StudentAcademicYr {
   @ApiProperty({ example: '4' })
   @Column({ type: 'int' })
   current_yr_level: number;
+
+  @ManyToOne(() => StudentDto, student => student.studentyr)
+  student: StudentDto;
+
+  @OneToMany(() => CandidateDto, (candidate) => candidate.studentyr)
+  candidate: CandidateDto[];
 }
+
