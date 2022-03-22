@@ -1,7 +1,15 @@
 import { PrimeMinisterDto } from './prime-minister.dto';
 import { Representative } from '../interfaces/representative.interface';
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, Entity, JoinColumn, PrimaryGeneratedColumn, OneToOne} from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  OneToMany,
+} from 'typeorm';
+import { VoterDto } from './voter.dto';
 @Entity('Representative')
 export class RepresentativeDto implements Representative {
   @PrimaryGeneratedColumn()
@@ -14,4 +22,7 @@ export class RepresentativeDto implements Representative {
   @OneToOne(() => PrimeMinisterDto)
   @JoinColumn({ name: 'primeMinister_id' })
   Account: PrimeMinisterDto;
+
+  @OneToMany(() => VoterDto, (voter) => voter.rep)
+  voter: VoterDto[];
 }

@@ -1,6 +1,5 @@
 export interface StudentAcademicYr {
   studentAcademicYr_id?: number;
-  student_id: number;
   college: string;
   department: string;
   course: string;

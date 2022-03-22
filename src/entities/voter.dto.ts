@@ -9,6 +9,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { PrimeMinisterDto } from './prime-minister.dto';
+import { RepresentativeDto } from './representative.dto';
 
 @Entity('Voter')
 export class VoterDto implements Voter {
@@ -20,14 +21,16 @@ export class VoterDto implements Voter {
   candidate_id: number;
 
   @ApiProperty({ example: '01' })
-  @Column()
+  @Column({ type: 'int' })
   election_id: number;
 
   @ApiProperty({ example: 'February 12,2022' })
   @Column({ length: 100 })
   date: string;
 
+  @ManyToOne(() => ElectionDto, (election) => election.voter)
+  election: ElectionDto[];
 
-  @ManyToOne(() => ElectionDto, election => election.voter)
-  election: ElectionDto;
+  @ManyToOne(() => RepresentativeDto, (rep) => rep.voter)
+  rep: RepresentativeDto[];
 }

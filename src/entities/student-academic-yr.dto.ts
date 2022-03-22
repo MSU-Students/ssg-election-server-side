@@ -17,10 +17,6 @@ export class StudentAcademicYrDto implements StudentAcademicYr {
   @PrimaryGeneratedColumn()
   studentAcademicYr_id?: number;
 
-  @ApiProperty({ example: '201811518' })
-  @Column({ type: 'int' })
-  student_id: number;
-
   @ApiProperty({ example: 'College of Health Sciences' })
   @Column({ length: 50 })
   college: string;
@@ -45,10 +41,9 @@ export class StudentAcademicYrDto implements StudentAcademicYr {
   @Column({ type: 'int' })
   current_yr_level: number;
 
-  @ManyToOne(() => StudentDto, student => student.studentyr)
-  student: StudentDto;
+  @OneToMany(() => StudentDto, (student) => student.studentyr)
+  student: StudentDto[];
 
   @OneToMany(() => CandidateDto, (candidate) => candidate.studentyr)
   candidate: CandidateDto[];
 }
-

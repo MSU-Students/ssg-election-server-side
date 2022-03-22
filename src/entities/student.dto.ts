@@ -12,6 +12,7 @@ import {
 import { ApiProperty } from '@nestjs/swagger';
 import { Student } from '../interfaces/student.interface';
 import { UserDto } from '../user/user.entity';
+import { MediaDto } from './media.dto';
 @Entity('student')
 export class StudentDto implements Student {
   @PrimaryGeneratedColumn()
@@ -46,9 +47,13 @@ export class StudentDto implements Student {
   email: string;
 
   @OneToOne(() => UserDto)
-  @JoinColumn({name: 'user_id'})
+  @JoinColumn({ name: 'user_id' })
   user: UserDto;
 
-  @OneToMany(() => StudentAcademicYrDto, (studentyr) => studentyr.student)
+  @OneToOne(() => MediaDto)
+  @JoinColumn({ name: 'picture_id' })
+  media: MediaDto;
+
+  @ManyToOne(() => StudentAcademicYrDto, (studentyr) => studentyr.student)
   studentyr: StudentAcademicYrDto[];
 }

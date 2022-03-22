@@ -11,6 +11,7 @@ import {
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { TempTally } from 'src/interfaces/temp-tally.interface';
+import { ElectionDto } from './election.dto';
 
 @Entity('temp_tally')
 export class TempTallyDto implements TempTally {
@@ -26,6 +27,10 @@ export class TempTallyDto implements TempTally {
   election_id: number;
 
   @OneToOne(() => CandidateDto)
-  @JoinColumn({name: 'candidate_id'})
+  @JoinColumn({ name: 'candidate_id' })
   candidate: CandidateDto;
+
+  @ManyToOne(() => ElectionDto, (election) => election.temptally)
+  @JoinColumn({ name: 'election_id' })
+  election: ElectionDto[];
 }

@@ -5,10 +5,12 @@ import {
   Generated,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { Election } from 'src/interfaces/election.interface';
+import { TempTallyDto } from './temp-tally.dto';
 
 @Entity('election')
 export class ElectionDto implements Election {
@@ -23,6 +25,9 @@ export class ElectionDto implements Election {
   @Column({ length: 100 })
   election_time: string;
 
-  @ManyToOne(() => VoterDto, (voter) => voter.election)
-  voter: VoterDto[];
+  @OneToMany(() => VoterDto, (voter) => voter.election)
+  voter: VoterDto;
+
+  @OneToMany(() => TempTallyDto, (temptally) => temptally.election)
+  temptally: TempTallyDto;
 }

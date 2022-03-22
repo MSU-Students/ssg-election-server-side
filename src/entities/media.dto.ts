@@ -19,6 +19,4 @@ export class MediaDto implements Media {
     type: 'mediumblob',
   })
   data: Uint8Array;
-
-  
 }
