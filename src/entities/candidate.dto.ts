@@ -1,9 +1,9 @@
+import { VoterDto } from 'src/entities/voter.dto';
 import { StudentAcademicYrDto } from 'src/entities/student-academic-yr.dto';
-import { StudentAcademicYr } from './../interfaces/student-academic-yr.interface';
 import {
   Column,
   Entity,
-  Generated,
+  OneToMany,
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -20,18 +20,15 @@ export class CandidateDto implements Candidate {
   @Column({ length: 1000 })
   position_type: 'voter' | 'admin' | 'rep' | 'ssg';
 
-  @ApiProperty({ example: '01' })
-  @Column({ type: 'int' })
-  election_id: number;
-
-  @ApiProperty({ example: '2020' })
-  @Column({ type: 'int' })
-  studentAcademicYr_id: number;
-
   @ApiProperty({ example: 'Time is gold.' })
   @Column({ length: 1000 })
   quote: string;
 
   @ManyToOne(() => StudentAcademicYrDto, studentyr => studentyr.candidate)
+  @JoinColumn({name: 'studentAcademicYr_id'})
   studentyr: StudentAcademicYrDto;
+
+  @OneToMany(() => VoterDto, (voter) => voter.candidate)
+  voter: VoterDto;
+  
 }

@@ -20,10 +20,6 @@ export class StudentDto implements Student {
 
   @ApiProperty({ example: '01' })
   @Column({ type: 'int' })
-  account_id: number;
-
-  @ApiProperty({ example: '01' })
-  @Column({ type: 'int' })
   school_id: number;
 
   @ApiProperty({ example: 'Najmah' })
@@ -46,13 +42,25 @@ export class StudentDto implements Student {
   @Column({ length: 100, nullable: true })
   email: string;
 
+  //1-to-1 Account
   @OneToOne(() => UserDto)
   @JoinColumn({ name: 'user_id' })
   user: UserDto;
 
+  @ApiProperty()
+  @Column()
+  user_id: number;
+
+  //1-to-1 Picture
   @OneToOne(() => MediaDto)
   @JoinColumn({ name: 'picture_id' })
   media: MediaDto;
+
+  @ApiProperty()
+  @Column()
+  picture_id: number;
+
+  //many-to-one Student Academic Year
 
   @ManyToOne(() => StudentAcademicYrDto, (studentyr) => studentyr.student)
   studentyr: StudentAcademicYrDto[];

@@ -3,7 +3,6 @@ import {
   Column,
   Entity,
   OneToMany,
-  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
@@ -35,7 +34,7 @@ export class ElectionDto implements Election {
   @Column({ length: 100 })
   end_time: string;
 
-  @ManyToOne(() => VoterDto, (voter) => voter.election)
+  @OneToMany(() => VoterDto, (voter) => voter.election)
   voter: VoterDto[];
 
   @OneToMany(() => TempTallyDto, (temptally) => temptally.election)

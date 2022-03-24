@@ -26,6 +26,10 @@ export class AdminDto implements Admin {
   position: string;
 
   @OneToOne(() => UserDto)
-  @JoinColumn({name: 'user_id'})
+  @JoinColumn({ name: 'user_id' })
   user: UserDto;
+
+  @ApiProperty()
+  @Column()
+  user_id: number;
 }

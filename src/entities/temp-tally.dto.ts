@@ -16,7 +16,7 @@ import { ElectionDto } from './election.dto';
 @Entity('temp_tally')
 export class TempTallyDto implements TempTally {
   @PrimaryGeneratedColumn()
-  temp_tally?: number;
+  temp_tally_id?: number;
 
   @ApiProperty({ example: '01' })
   @Column({ type: 'int' })

@@ -16,13 +16,13 @@ export class PrimeMinisterService {
       async findAll(): Promise<PrimeMinisterDto[]> {
         return this.primeMinisterRepository.find();
       }
-      async findOne(account_type_id: number): Promise<PrimeMinisterDto> {
-        return this.primeMinisterRepository.findOne(account_type_id);
+      async findOne(primeMinister_id: number): Promise<PrimeMinisterDto> {
+        return this.primeMinisterRepository.findOne(primeMinister_id);
       }
-      async update(account_type_id: number, application: PrimeMinisterDto) {
-        return this.primeMinisterRepository.update(account_type_id, application);
+      async update(primeMinister_id: number, application: PrimeMinisterDto) {
+        return this.primeMinisterRepository.update(primeMinister_id, application);
       }
-      async deleteOne(account_type_id: number) {
-        return this.primeMinisterRepository.delete(account_type_id);
+      async deleteOne(primeMinister_id: number) {
+        return this.primeMinisterRepository.delete(primeMinister_id);
       }
 }

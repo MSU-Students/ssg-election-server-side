@@ -16,12 +16,11 @@ export class PrimeMinisterDto implements PrimeMinister {
   @PrimaryGeneratedColumn()
   primeMinister_id?: number;
 
-  @ApiProperty({ example: '01' })
-  @Column()
-  election_id: number;
-
   @OneToOne(() => ElectionDto)
-  @JoinColumn()
+  @JoinColumn({ name: 'election_id' })
   user: ElectionDto;
 
+  @ApiProperty()
+  @Column()
+  election_id: number;
 }

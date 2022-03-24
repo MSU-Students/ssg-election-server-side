@@ -1,3 +1,4 @@
+import { VoterDto } from './../entities/voter.dto';
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { User } from '../interfaces/user.interface';
@@ -26,4 +27,7 @@ export class UserDto implements User {
   @ApiProperty({ required: false })
   @Column({ length: 255, default: '' })
   refreshToken?: string;
+
+  @OneToMany(() => VoterDto, (voter) => voter.user)
+  voter: VoterDto;
 }

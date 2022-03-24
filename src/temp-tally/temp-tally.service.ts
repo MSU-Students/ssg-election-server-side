@@ -16,13 +16,13 @@ export class TempTallyService {
   async findAll(): Promise<TempTallyDto[]> {
     return this.tempTallyRepository.find();
   }
-  async findOne(account_type_id: number): Promise<TempTallyDto> {
-    return this.tempTallyRepository.findOne(account_type_id);
+  async findOne(temp_tally_id: number): Promise<TempTallyDto> {
+    return this.tempTallyRepository.findOne(temp_tally_id);
   }
-  async update(account_type_id: number, application: TempTallyDto) {
-    return this.tempTallyRepository.update(account_type_id, application);
+  async update(temp_tally_id: number, application: TempTallyDto) {
+    return this.tempTallyRepository.update(temp_tally_id, application);
   }
-  async deleteOne(account_type_id: number) {
-    return this.tempTallyRepository.delete(account_type_id);
+  async deleteOne(temp_tally_id: number) {
+    return this.tempTallyRepository.delete(temp_tally_id);
   }
 }

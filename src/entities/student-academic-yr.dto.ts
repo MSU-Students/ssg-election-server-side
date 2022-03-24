@@ -42,6 +42,7 @@ export class StudentAcademicYrDto implements StudentAcademicYr {
   current_yr_level: number;
 
   @OneToMany(() => StudentDto, (student) => student.studentyr)
+  @JoinColumn({name: 'student_id'})
   student: StudentDto[];
 
   @OneToMany(() => CandidateDto, (candidate) => candidate.studentyr)
