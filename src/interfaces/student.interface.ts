@@ -6,4 +6,9 @@ export interface Student {
   last_name: string;
   suffix: string;
   email: string;
+  yr_admitted: string;
+  college: string;
+  course: string;
+  department: string;
+  student_type: 'regular' | 'representative';
 }

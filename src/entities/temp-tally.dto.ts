@@ -25,12 +25,4 @@ export class TempTallyDto implements TempTally {
   @ApiProperty({ example: '01' })
   @Column({ type: 'int' })
   election_id: number;
-
-  @OneToOne(() => CandidateDto)
-  @JoinColumn({ name: 'candidate_id' })
-  candidate: CandidateDto;
-
-  @ManyToOne(() => ElectionDto, (election) => election.temptally)
-  @JoinColumn({ name: 'election_id' })
-  election: ElectionDto[];
 }

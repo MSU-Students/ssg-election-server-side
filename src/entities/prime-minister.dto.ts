@@ -6,21 +6,32 @@ import {
   OneToOne,
   JoinColumn,
   PrimaryGeneratedColumn,
+  ManyToMany,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import { PrimeMinister } from 'src/interfaces/prime-minister.interface';
-import { VoterDto } from './voter.dto';
+import { SsgMember } from 'src/interfaces/prime-minister.interface';
+import { VoteRepDto } from './vote-rep.dto';
 
-@Entity('prime_minister')
-export class PrimeMinisterDto implements PrimeMinister {
+@Entity('SSG_Member')
+export class SsgMemberDto implements SsgMember {
   @PrimaryGeneratedColumn()
-  primeMinister_id?: number;
+  ssg_id?: number;
+
+  @ApiProperty({ example: '2018' })
+  @Column({ length: 100 })
+  academic_yr: string;
+
+  @ApiProperty({ example: 'Chief Executive' })
+  @Column({ length: 100 })
+  position: string;
 
   @OneToOne(() => ElectionDto)
   @JoinColumn({ name: 'election_id' })
   user: ElectionDto;
-
   @ApiProperty()
-  @Column()
-  election_id: number;
+  @Column({ nullable: true })
+  public election_id?: number;
+
+  @ManyToMany(() => VoteRepDto, (voterep) => voterep.prime)
+  voterep: VoteRepDto[];
 }

@@ -1,13 +1,14 @@
-import { VoterDto } from 'src/entities/voter.dto';
+import { AdminDto } from 'src/entities/admin.dto';
 import {
   Column,
   Entity,
+  JoinColumn,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { Election } from 'src/interfaces/election.interface';
-import { TempTallyDto } from './temp-tally.dto';
 
 @Entity('election')
 export class ElectionDto implements Election {
@@ -17,6 +18,10 @@ export class ElectionDto implements Election {
   @ApiProperty({ example: 'February 12, 2022' })
   @Column({ length: 100 })
   election_name: string;
+
+  @ApiProperty({ example: '2021' })
+  @Column({ length: 50 })
+  academic_year: string;
 
   @ApiProperty({ example: 'February 12, 2022' })
   @Column({ length: 100 })
@@ -34,9 +39,10 @@ export class ElectionDto implements Election {
   @Column({ length: 100 })
   end_time: string;
 
-  @OneToMany(() => VoterDto, (voter) => voter.election)
-  voter: VoterDto[];
-
-  @OneToMany(() => TempTallyDto, (temptally) => temptally.election)
-  temptally: TempTallyDto;
+  @OneToOne(() => AdminDto)
+  @JoinColumn({ name: 'admin_id' })
+  admin: AdminDto;
+  @ApiProperty()
+  @Column({ nullable: true })
+  public admin_id?: number;
 }

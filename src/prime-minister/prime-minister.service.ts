@@ -1,28 +1,28 @@
-import { PrimeMinisterDto } from './../entities/prime-minister.dto';
+import { SsgMemberDto } from './../entities/prime-minister.dto';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 @Injectable()
-export class PrimeMinisterService {
+export class SsgMemberService {
     constructor(
-        @InjectRepository(PrimeMinisterDto)
-        private primeMinisterRepository: Repository<PrimeMinisterDto>,
+        @InjectRepository(SsgMemberDto)
+        private SsgMemberRepository: Repository<SsgMemberDto>,
       ) {}
     
-      async create(application: PrimeMinisterDto): Promise<PrimeMinisterDto> {
-        return this.primeMinisterRepository.save(application);
+      async create(application: SsgMemberDto): Promise<SsgMemberDto> {
+        return this.SsgMemberRepository.save(application);
       }
-      async findAll(): Promise<PrimeMinisterDto[]> {
-        return this.primeMinisterRepository.find();
+      async findAll(): Promise<SsgMemberDto[]> {
+        return this.SsgMemberRepository.find();
       }
-      async findOne(primeMinister_id: number): Promise<PrimeMinisterDto> {
-        return this.primeMinisterRepository.findOne(primeMinister_id);
+      async findOne(ssg_id: number): Promise<SsgMemberDto> {
+        return this.SsgMemberRepository.findOne(ssg_id);
       }
-      async update(primeMinister_id: number, application: PrimeMinisterDto) {
-        return this.primeMinisterRepository.update(primeMinister_id, application);
+      async update(ssg_id: number, application: SsgMemberDto) {
+        return this.SsgMemberRepository.update(ssg_id, application);
       }
-      async deleteOne(primeMinister_id: number) {
-        return this.primeMinisterRepository.delete(primeMinister_id);
+      async deleteOne(ssg_id: number) {
+        return this.SsgMemberRepository.delete(ssg_id);
       }
 }

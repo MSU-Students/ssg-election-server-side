@@ -1,5 +1,6 @@
-import { VoterDto } from 'src/entities/voter.dto';
-import { StudentAcademicYrDto } from 'src/entities/student-academic-yr.dto';
+import { StudentDto } from 'src/entities/student.dto';
+import { ElectionDto } from 'src/entities/election.dto';
+
 import {
   Column,
   Entity,
@@ -7,6 +8,7 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
+  OneToOne,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { Candidate } from 'src/interfaces/candidate.interface';
@@ -22,13 +24,20 @@ export class CandidateDto implements Candidate {
 
   @ApiProperty({ example: 'Time is gold.' })
   @Column({ length: 1000 })
-  quote: string;
+  platform: string;
 
-  @ManyToOne(() => StudentAcademicYrDto, studentyr => studentyr.candidate)
-  @JoinColumn({name: 'studentAcademicYr_id'})
-  studentyr: StudentAcademicYrDto;
+  //Relations
+  @OneToOne(() => ElectionDto)
+  @JoinColumn({ name: 'election_id' })
+  election: ElectionDto;
+  @ApiProperty()
+  @Column({ nullable: true })
+  public election_id?: number;
 
-  @OneToMany(() => VoterDto, (voter) => voter.candidate)
-  voter: VoterDto;
-  
+  @OneToOne(() => StudentDto)
+  @JoinColumn({ name: 'student_id' })
+  student: StudentDto;
+  @ApiProperty()
+  @Column({ nullable: true })
+  public student_id?: number;
 }

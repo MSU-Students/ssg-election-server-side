@@ -12,54 +12,54 @@ import {
     ApiOperation,
     ApiResponse,
   } from '@nestjs/swagger';
-  import { PrimeMinisterService } from './prime-minister.service';
-  import { PrimeMinisterDto } from 'src/entities/prime-minister.dto';
+  import { SsgMemberService } from './prime-minister.service';
+  import { SsgMemberDto } from 'src/entities/prime-minister.dto';
 
-@Controller('prime-minister')
-export class PrimeMinisterController {
-    constructor(private PrimeMinisterService: PrimeMinisterService) {}
+@Controller('ssg-member')
+export class ssgMemberController {
+    constructor(private SsgMemberService: SsgMemberService) {}
 
-  @ApiBody({ type: PrimeMinisterDto })
+  @ApiBody({ type: SsgMemberDto })
   @ApiOperation({
-    summary: 'Add new Prime Minister',
-    operationId: 'AddPrime',
+    summary: 'Add new SSG Member',
+    operationId: 'AddSsg',
   })
-  @ApiResponse({ status: 200, type: PrimeMinisterDto })
+  @ApiResponse({ status: 200, type: SsgMemberDto })
   @Post()
-  async create(@Body() job: PrimeMinisterDto): Promise<PrimeMinisterDto> {
-    return this.PrimeMinisterService.create(job);
+  async create(@Body() job: SsgMemberDto): Promise<SsgMemberDto> {
+    return this.SsgMemberService.create(job);
   }
 
-  @ApiOperation({ summary: 'Get all Prime Ministers', operationId: 'GetPrimes' })
-  @ApiResponse({ status: 200, type: PrimeMinisterDto })
+  @ApiOperation({ summary: 'Get all SSG Members', operationId: 'GetSsgs' })
+  @ApiResponse({ status: 200, type: SsgMemberDto })
   @Get()
-  async findAll(): Promise<PrimeMinisterDto[]> {
-    return this.PrimeMinisterService.findAll();
+  async findAll(): Promise<SsgMemberDto[]> {
+    return this.SsgMemberService.findAll();
   }
 
-  @ApiOperation({ summary: 'Get Prime Minister by id', operationId: 'GetPrime' })
-  @ApiResponse({ status: 200, type: PrimeMinisterDto })
-  @Get(':primeMinister_id')
-  async findOne(@Param('primeMinister_id') id: number): Promise<PrimeMinisterDto> {
-    return this.PrimeMinisterService.findOne(id);
+  @ApiOperation({ summary: 'Get SSG Members by id', operationId: 'GetSsg' })
+  @ApiResponse({ status: 200, type: SsgMemberDto })
+  @Get(':ssg_id')
+  async findOne(@Param('ssg_id') id: number): Promise<SsgMemberDto> {
+    return this.SsgMemberService.findOne(id);
   }
   @ApiOperation({
-    summary: 'Update Prime Minister by id',
-    operationId: 'UpdatePrime',
+    summary: 'Update SSG Member by id',
+    operationId: 'UpdateSsg',
   })
-  @ApiResponse({ status: 200, type: PrimeMinisterDto })
-  @Put(':primeMinister_id')
-  async update(@Param('primeMinister_id') id: number, @Body() job: PrimeMinisterDto) {
-    return this.PrimeMinisterService.update(id, job);
+  @ApiResponse({ status: 200, type: SsgMemberDto })
+  @Put(':ssg_id')
+  async update(@Param('ssg_id') id: number, @Body() job: SsgMemberDto) {
+    return this.SsgMemberService.update(id, job);
   }
 
   @ApiOperation({
-    summary: 'Delete Prime Minister by id',
-    operationId: 'DeletePrime',
+    summary: 'Delete SSG Member by id',
+    operationId: 'DeleteSsg',
   })
-  @ApiResponse({ status: 200, type: PrimeMinisterDto })
-  @Delete(':primeMinister_id')
-  async delete(@Param('primeMinister_id') id: number) {
-    return this.PrimeMinisterService.deleteOne(id);
+  @ApiResponse({ status: 200, type: SsgMemberDto })
+  @Delete(':ssg_id')
+  async delete(@Param('ssg_id') id: number) {
+    return this.SsgMemberService.deleteOne(id);
   }
 }

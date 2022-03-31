@@ -1,4 +1,4 @@
-import { PrimeMinisterDto } from './prime-minister.dto';
+import { SsgMemberDto } from './prime-minister.dto';
 import { Representative } from '../interfaces/representative.interface';
 import { ApiProperty } from '@nestjs/swagger';
 import {
@@ -9,21 +9,30 @@ import {
   OneToOne,
   OneToMany,
 } from 'typeorm';
-import { VoterDto } from './voter.dto';
+import { VoteRepDto } from './vote-rep.dto';
 @Entity('Representative')
 export class RepresentativeDto implements Representative {
   @PrimaryGeneratedColumn()
   representative_id?: number;
 
-  @OneToOne(() => PrimeMinisterDto)
-  @JoinColumn({ name: 'primeMinister_id' })
-  Account: PrimeMinisterDto;
+  @ApiProperty({example: 'College of Information Technology'})
+  @Column({ length: 100 })
+  academic_yr: string;
 
+  @ApiProperty({example: 'College of Information Technology'})
+  @Column({ length: 100 })
+  position: string;
+
+  //Relations
+
+  @OneToOne(() => SsgMemberDto)
+  @JoinColumn({ name: 'ssg_id' })
+  Account: SsgMemberDto;
   @ApiProperty()
-  @Column()
-  primeMinister_id: number;
+  @Column({ nullable: true })
+  public ssg_id?: number;
 
-  @OneToMany(() => VoterDto, (voter) => voter.rep)
-  @JoinColumn({name: 'voter_id'})
-  voter: VoterDto[];
+  @OneToMany(() => VoteRepDto, (voterep) => voterep.representative)
+  @JoinColumn({name: 'voterep_id'})
+  voterep: VoteRepDto[];
 }
