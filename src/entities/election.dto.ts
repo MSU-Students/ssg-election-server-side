@@ -41,7 +41,8 @@ export class ElectionDto implements Election {
   @OneToOne(() => AdminDto)
   @JoinColumn({ name: 'admin_id' })
   admin: AdminDto;
-  @ApiProperty()
+
+  @ApiProperty({ required: false })
   @Column({ nullable: true })
-  public admin_id?: number;
+  admin_id?: number;
 }
