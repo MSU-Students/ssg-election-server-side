@@ -2,14 +2,13 @@ import { ElectionDto } from 'src/entities/election.dto';
 import {
   Column,
   Entity,
-  OneToMany,
   OneToOne,
   JoinColumn,
   PrimaryGeneratedColumn,
   ManyToMany,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import { SsgMember } from 'src/interfaces/prime-minister.interface';
+import { SsgMember } from 'src/interfaces/ssg-member.interface';
 import { VoteRepDto } from './vote-rep.dto';
 
 @Entity('SSG_Member')

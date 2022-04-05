@@ -29,7 +29,7 @@ export class VoteRepController {
   // select all from rep Candidate
   @ApiOperation({
     summary: 'Get all Representative Candidate',
-    operationId: 'GetVoteRep',
+    operationId: 'GetVoteReps',
   })
   @ApiResponse({ status: 200, type: VoteRepDto })
   @Get()

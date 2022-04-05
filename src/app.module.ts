@@ -1,7 +1,7 @@
 import { VoteSsgDto } from './entities/vote-ssg.dto';
 import { VoteRepDto } from './entities/vote-rep.dto';
 
-import { SsgMemberDto } from './entities/prime-minister.dto';
+import { SsgMemberDto } from './entities/ssg-member.dto';
 import { AdminDto } from './entities/admin.dto';
 import { RepresentativeDto } from './entities/representative.dto';
 import { Module } from '@nestjs/common';
@@ -12,8 +12,8 @@ import { RepresentativeController } from './representative/representative.contro
 import { RepresentativeService } from './representative/representative.service';
 import { AdminService } from './admin/admin.service';
 import { AdminController } from './admin/admin.controller';
-import { ssgMemberController } from './prime-minister/prime-minister.controller';
-import { SsgMemberService } from './prime-minister/prime-minister.service';
+import { ssgMemberController } from './ssg-member/ssg-member.controller';
+import { SsgMemberService } from './ssg-member/ssg-member.service';
 import { UserDto } from './user';
 import { AuthModule } from './user/auth.module';
 import { StudentDto } from './entities/student.dto';
@@ -71,8 +71,8 @@ import { VoteRepService } from './vote-rep/vote-rep.service';
         VoteSsgDto,
         MediaDto,
       ],
-      // synchronize: true,
-      // dropSchema: true,
+      synchronize: true,
+      dropSchema: true,
     }),
     AuthModule,
   ],

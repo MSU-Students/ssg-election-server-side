@@ -1,6 +1,13 @@
-import { SsgMemberDto } from 'src/entities/prime-minister.dto';
+import { SsgMemberDto } from 'src/entities/ssg-member.dto';
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  ManyToMany,
+} from 'typeorm';
 import { VoteRep } from 'src/interfaces/vote-rep.interface';
 import { RepresentativeDto } from './representative.dto';
 import { StudentDto } from './student.dto';
@@ -30,7 +37,10 @@ export class VoteRepDto implements VoteRep {
   @Column({ length: 100 })
   time: string;
 
-  @ManyToOne(() => RepresentativeDto, (representative) => representative.voterep)
+  @ManyToOne(
+    () => RepresentativeDto,
+    (representative) => representative.voterep,
+  )
   @JoinColumn({ name: 'representative_id' })
   representative: RepresentativeDto;
 

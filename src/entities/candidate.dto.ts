@@ -4,9 +4,7 @@ import { ElectionDto } from 'src/entities/election.dto';
 import {
   Column,
   Entity,
-  OneToMany,
   JoinColumn,
-  ManyToOne,
   PrimaryGeneratedColumn,
   OneToOne,
 } from 'typeorm';

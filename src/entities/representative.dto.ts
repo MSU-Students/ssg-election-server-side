@@ -1,4 +1,4 @@
-import { SsgMemberDto } from './prime-minister.dto';
+import { SsgMemberDto } from './ssg-member.dto';
 import { Representative } from '../interfaces/representative.interface';
 import { ApiProperty } from '@nestjs/swagger';
 import {
@@ -15,11 +15,11 @@ export class RepresentativeDto implements Representative {
   @PrimaryGeneratedColumn()
   representative_id?: number;
 
-  @ApiProperty({example: 'College of Information Technology'})
+  @ApiProperty({ example: 'College of Information Technology' })
   @Column({ length: 100 })
   academic_yr: string;
 
-  @ApiProperty({example: 'College of Information Technology'})
+  @ApiProperty({ example: 'College of Information Technology' })
   @Column({ length: 100 })
   position: string;
 
@@ -33,6 +33,6 @@ export class RepresentativeDto implements Representative {
   public ssg_id?: number;
 
   @OneToMany(() => VoteRepDto, (voterep) => voterep.representative)
-  @JoinColumn({name: 'voterep_id'})
+  @JoinColumn({ name: 'voterep_id' })
   voterep: VoteRepDto[];
 }

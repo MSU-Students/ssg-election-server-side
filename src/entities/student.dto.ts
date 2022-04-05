@@ -80,14 +80,14 @@ export class StudentDto implements Student {
   public picture_id?: number;
 
   @OneToMany(() => CandidateDto, (candidate) => candidate.student)
-  @JoinColumn({name: 'candidate_id'})
+  @JoinColumn({ name: 'candidate_id' })
   candidate: CandidateDto[];
 
   @OneToMany(() => VoteRepDto, (voterep) => voterep.student)
-  @JoinColumn({name: 'voterep_id'})
+  @JoinColumn({ name: 'voterep_id' })
   voterep: VoteRepDto[];
 
   @OneToMany(() => VoteSsgDto, (votessg) => votessg.student)
-  @JoinColumn({name: 'ssg_id'})
+  @JoinColumn({ name: 'ssg_id' })
   votessg: VoteSsgDto[];
 }

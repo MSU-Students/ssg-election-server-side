@@ -1,23 +1,19 @@
 import {
-    Body,
-    Controller,
-    Delete,
-    Get,
-    Param,
-    Post,
-    Put,
-  } from '@nestjs/common';
-  import {
-    ApiBody,
-    ApiOperation,
-    ApiResponse,
-  } from '@nestjs/swagger';
-  import { SsgMemberService } from './prime-minister.service';
-  import { SsgMemberDto } from 'src/entities/prime-minister.dto';
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
+import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { SsgMemberService } from './ssg-member.service';
+import { SsgMemberDto } from 'src/entities/ssg-member.dto';
 
 @Controller('ssg-member')
 export class ssgMemberController {
-    constructor(private SsgMemberService: SsgMemberService) {}
+  constructor(private SsgMemberService: SsgMemberService) {}
 
   @ApiBody({ type: SsgMemberDto })
   @ApiOperation({

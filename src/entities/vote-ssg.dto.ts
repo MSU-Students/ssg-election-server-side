@@ -1,7 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { VoteSsg } from 'src/interfaces/vote-ssg.interface';
-import { SsgMemberDto } from './prime-minister.dto';
+import { SsgMemberDto } from './ssg-member.dto';
 import { StudentDto } from './student.dto';
 
 @Entity('Vote_SSG')
