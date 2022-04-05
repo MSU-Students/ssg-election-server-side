@@ -21,7 +21,7 @@ export class ElectionDto implements Election {
 
   @ApiProperty({ example: '2021' })
   @Column({ length: 50 })
-  academic_year: string;
+  academic_yr: string;
 
   @ApiProperty({ example: 'February 12, 2022' })
   @Column({ length: 100 })
