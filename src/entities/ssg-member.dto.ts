@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { SsgMember } from 'src/interfaces/ssg-member.interface';
-import { VoteRepDto } from './vote-rep.dto';
+import { VoteSsgDto } from './vote-ssg.dto';
 
 @Entity('SSG_Member')
 export class SsgMemberDto implements SsgMember {
@@ -31,6 +31,6 @@ export class SsgMemberDto implements SsgMember {
   @Column({ nullable: true })
   public election_id?: number;
 
-  @ManyToMany(() => VoteRepDto, (voterep) => voterep.prime)
-  voterep: VoteRepDto[];
+  @ManyToMany(() => VoteSsgDto, (votessg) => votessg.prime)
+  votessg: VoteSsgDto[];
 }

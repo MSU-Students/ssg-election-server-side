@@ -15,7 +15,7 @@ export class ElectionService {
   }
   async findAll(): Promise<ElectionDto[]> {
     return this.electionRepository.find({
-      relations: ['admin_id'],
+      relations: ['admin'],
     });
   }
   async findOne(election_id: number): Promise<ElectionDto> {

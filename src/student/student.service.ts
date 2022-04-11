@@ -14,7 +14,10 @@ export class StudentService {
     return this.studentRepository.save(application);
   }
   async findAll(): Promise<StudentDto[]> {
-    return this.studentRepository.find();
+    return this.studentRepository.find({
+      relations: ['user', 'media'],
+    });
+    
   }
   async findOne(student_id: number): Promise<StudentDto> {
     return this.studentRepository.findOne(student_id);

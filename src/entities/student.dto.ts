@@ -15,6 +15,7 @@ import { VoteRepDto } from './vote-rep.dto';
 import { VoteSsgDto } from './vote-ssg.dto';
 @Entity('student')
 export class StudentDto implements Student {
+  @ApiProperty({ required: false })
   @PrimaryGeneratedColumn()
   student_id?: number;
 
@@ -26,7 +27,7 @@ export class StudentDto implements Student {
   @Column({ length: 100 })
   first_name: string;
 
-  @ApiProperty({ example: 'Angni' })
+  @ApiProperty({ example: 'Angni', required: false })
   @Column({ length: 100 })
   middle_name: string;
 
@@ -67,7 +68,7 @@ export class StudentDto implements Student {
   @OneToOne(() => UserDto, { nullable: true })
   @JoinColumn({ name: 'user_id' })
   user: UserDto;
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @Column({ nullable: true })
   public user_id?: number;
 
@@ -75,7 +76,7 @@ export class StudentDto implements Student {
   @OneToOne(() => MediaDto)
   @JoinColumn({ name: 'picture_id' })
   media: MediaDto;
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @Column({ nullable: true })
   public picture_id?: number;
 

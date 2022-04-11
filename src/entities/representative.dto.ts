@@ -12,6 +12,7 @@ import {
 import { VoteRepDto } from './vote-rep.dto';
 @Entity('Representative')
 export class RepresentativeDto implements Representative {
+  @ApiProperty({ required: false })
   @PrimaryGeneratedColumn()
   representative_id?: number;
 

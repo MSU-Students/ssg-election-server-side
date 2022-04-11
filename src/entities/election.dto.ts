@@ -14,7 +14,7 @@ export class ElectionDto implements Election {
   @PrimaryGeneratedColumn()
   election_id?: number;
 
-  @ApiProperty({ example: 'February 12, 2022' })
+  @ApiProperty({ example: 'Election for SSG 2022' })
   @Column({ length: 100 })
   election_name: string;
 
@@ -26,7 +26,7 @@ export class ElectionDto implements Election {
   @Column({ length: 100 })
   start_date: string;
 
-  @ApiProperty({ example: '8:00 PM' })
+  @ApiProperty({ example: '8:00 AM' })
   @Column({ length: 100 })
   start_time: string;
 
@@ -39,10 +39,10 @@ export class ElectionDto implements Election {
   end_time: string;
 
   @OneToOne(() => AdminDto)
-  @JoinColumn({ name: 'admin_id' })
+  @JoinColumn()
   admin: AdminDto;
 
   @ApiProperty({ required: false })
   @Column({ nullable: true })
-  admin_id?: number;
+  adminAdminId: number;
 }

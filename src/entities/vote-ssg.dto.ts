@@ -36,7 +36,7 @@ export class VoteSsgDto implements VoteSsg {
   @Column({ length: 100 })
   time: string;
 
-  @ManyToMany(() => SsgMemberDto, (prime) => prime.voterep)
+  @ManyToMany(() => SsgMemberDto, (prime) => prime.votessg)
   @JoinColumn({ name: 'ssg_id' })
   prime: SsgMemberDto[];
 

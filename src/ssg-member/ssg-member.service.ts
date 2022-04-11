@@ -14,7 +14,9 @@ export class SsgMemberService {
     return this.SsgMemberRepository.save(application);
   }
   async findAll(): Promise<SsgMemberDto[]> {
-    return this.SsgMemberRepository.find();
+    return this.SsgMemberRepository.find({
+      relations: ['votessg'],
+    });
   }
   async findOne(ssg_id: number): Promise<SsgMemberDto> {
     return this.SsgMemberRepository.findOne(ssg_id);

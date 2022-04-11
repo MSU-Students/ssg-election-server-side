@@ -13,6 +13,7 @@ import { Candidate } from 'src/interfaces/candidate.interface';
 
 @Entity('candidate')
 export class CandidateDto implements Candidate {
+  @ApiProperty({ required: false })
   @PrimaryGeneratedColumn()
   candidate_id?: number;
 
