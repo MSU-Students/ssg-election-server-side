@@ -6,6 +6,7 @@ import {
   JoinColumn,
   PrimaryGeneratedColumn,
   ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { SsgMember } from 'src/interfaces/ssg-member.interface';
@@ -13,6 +14,7 @@ import { VoteSsgDto } from './vote-ssg.dto';
 
 @Entity('SSG_Member')
 export class SsgMemberDto implements SsgMember {
+  @ApiProperty({ required: false })
   @PrimaryGeneratedColumn()
   ssg_id?: number;
 
@@ -24,13 +26,8 @@ export class SsgMemberDto implements SsgMember {
   @Column({ length: 100 })
   position: string;
 
-  @OneToOne(() => ElectionDto)
-  @JoinColumn({ name: 'election_id' })
-  user: ElectionDto;
-  @ApiProperty()
-  @Column({ nullable: true })
-  public election_id?: number;
-
-  @ManyToMany(() => VoteSsgDto, (votessg) => votessg.prime)
+  @ApiProperty({ required: false, type: () => VoteSsgDto })
+  @ManyToMany(() => VoteSsgDto, (votessg) => votessg.prime, { nullable: true })
+  @JoinTable()
   votessg: VoteSsgDto[];
 }

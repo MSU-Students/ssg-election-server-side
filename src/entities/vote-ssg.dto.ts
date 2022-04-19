@@ -13,6 +13,7 @@ import { StudentDto } from './student.dto';
 
 @Entity('Vote_SSG')
 export class VoteSsgDto implements VoteSsg {
+  @ApiProperty({ required: false })
   @PrimaryGeneratedColumn()
   vote_ssg_id?: number;
 
@@ -36,11 +37,10 @@ export class VoteSsgDto implements VoteSsg {
   @Column({ length: 100 })
   time: string;
 
-  @ManyToMany(() => SsgMemberDto, (prime) => prime.votessg)
-  @JoinColumn({ name: 'ssg_id' })
-  prime: SsgMemberDto[];
-
-  @ManyToOne(() => StudentDto, (student) => student.votessg)
-  @JoinColumn({ name: 'student_id' })
+  @ApiProperty({ required: false, type: () => StudentDto })
+  @ManyToOne(() => StudentDto, (student) => student.voterep, { nullable: true })
   student: StudentDto;
+
+  @ManyToMany(() => SsgMemberDto, (prime) => prime.votessg, { nullable: true })
+  prime: SsgMemberDto[];
 }

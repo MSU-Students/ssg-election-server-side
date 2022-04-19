@@ -2,8 +2,6 @@ import { CandidateDto } from 'src/entities/candidate.dto';
 import {
   Column,
   Entity,
-  JoinColumn,
-  OneToOne,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -19,8 +17,8 @@ export class StudentDto implements Student {
   @PrimaryGeneratedColumn()
   student_id?: number;
 
-  @ApiProperty({ example: '01' })
-  @Column({ type: 'int' })
+  @ApiProperty({ example: '01', required: false })
+  @Column({ type: 'int', nullable: true })
   school_id: number;
 
   @ApiProperty({ example: 'Najmah' })
@@ -64,31 +62,25 @@ export class StudentDto implements Student {
   student_type: 'regular' | 'representative';
 
   //1-to-1 Account
-
-  @OneToOne(() => UserDto, { nullable: true })
-  @JoinColumn({ name: 'user_id' })
-  user: UserDto;
-  @ApiProperty({ required: false })
-  @Column({ nullable: true })
-  public user_id?: number;
+  @ApiProperty({ required: false, type: () => UserDto })
+  @OneToMany(() => UserDto, (user) => user.student)
+  user: UserDto[];
 
   //1-to-1 Picture
-  @OneToOne(() => MediaDto)
-  @JoinColumn({ name: 'picture_id' })
-  media: MediaDto;
-  @ApiProperty({ required: false })
-  @Column({ nullable: true })
-  public picture_id?: number;
+  @ApiProperty({ required: false, type: () => MediaDto })
+  @OneToMany(() => MediaDto, (media) => media.student)
+  media: MediaDto[];
 
+  //not necessary, for relation only
   @OneToMany(() => CandidateDto, (candidate) => candidate.student)
-  @JoinColumn({ name: 'candidate_id' })
   candidate: CandidateDto[];
 
   @OneToMany(() => VoteRepDto, (voterep) => voterep.student)
-  @JoinColumn({ name: 'voterep_id' })
   voterep: VoteRepDto[];
 
   @OneToMany(() => VoteSsgDto, (votessg) => votessg.student)
-  @JoinColumn({ name: 'ssg_id' })
   votessg: VoteSsgDto[];
+
+  @OneToMany(() => CandidateDto, (candidate) => candidate.student)
+  student: CandidateDto[];
 }

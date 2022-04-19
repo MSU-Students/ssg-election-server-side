@@ -1,8 +1,10 @@
+import { CandidateDto } from './candidate.dto';
 import { AdminDto } from 'src/entities/admin.dto';
 import {
   Column,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -11,12 +13,17 @@ import { Election } from 'src/interfaces/election.interface';
 
 @Entity('election')
 export class ElectionDto implements Election {
+  @ApiProperty({ required: false })
   @PrimaryGeneratedColumn()
   election_id?: number;
 
   @ApiProperty({ example: 'Election for SSG 2022' })
   @Column({ length: 100 })
   election_name: string;
+
+  @ApiProperty({ default: 'regular' })
+  @Column({ length: 100 })
+  election_type: 'College Representative' | 'SSG Officers';
 
   @ApiProperty({ example: '2021' })
   @Column({ length: 50 })
@@ -38,11 +45,11 @@ export class ElectionDto implements Election {
   @Column({ length: 100 })
   end_time: string;
 
-  @OneToOne(() => AdminDto)
-  @JoinColumn()
+  @OneToOne(() => AdminDto, { nullable: true })
+  @JoinColumn({ name: 'admin_id' })
   admin: AdminDto;
 
-  @ApiProperty({ required: false })
-  @Column({ nullable: true })
-  adminAdminId: number;
+  @OneToMany(() => CandidateDto, (candidate) => candidate.election)
+  candidate: CandidateDto[];
+  
 }

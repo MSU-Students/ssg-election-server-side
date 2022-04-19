@@ -3,10 +3,10 @@ import { ApiProperty } from '@nestjs/swagger';
 import {
   Column,
   Entity,
-  JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
   ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { VoteRep } from 'src/interfaces/vote-rep.interface';
 import { RepresentativeDto } from './representative.dto';
@@ -14,6 +14,7 @@ import { StudentDto } from './student.dto';
 
 @Entity('Vote_Rep')
 export class VoteRepDto implements VoteRep {
+  @ApiProperty({ required: false })
   @PrimaryGeneratedColumn()
   vote_rep_id?: number;
 
@@ -37,18 +38,19 @@ export class VoteRepDto implements VoteRep {
   @Column({ length: 100 })
   time: string;
 
+  @ApiProperty({ required: false, type: () => StudentDto })
+  @ManyToOne(() => StudentDto, (student) => student.voterep, { nullable: true })
+  student: StudentDto;
+
+  //for relation only
   @ManyToOne(
     () => RepresentativeDto,
     (representative) => representative.voterep,
+    { nullable: true },
   )
-  @JoinColumn({ name: 'representative_id' })
   representative: RepresentativeDto;
 
-  @ManyToOne(() => StudentDto, (student) => student.voterep)
-  @JoinColumn({ name: 'student_id' })
-  student: StudentDto;
-
   @ManyToMany(() => SsgMemberDto)
-  @JoinColumn({ name: 'ssg_id' })
+  @JoinTable({ name: 'ssg_id' })
   prime: SsgMemberDto[];
 }

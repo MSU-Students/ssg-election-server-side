@@ -6,6 +6,7 @@ import {
   OneToMany,
   OneToOne,
   JoinColumn,
+  ManyToOne,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { User } from '../interfaces/user.interface';
@@ -34,4 +35,8 @@ export class UserDto implements User {
   @ApiProperty({ required: false })
   @Column({ length: 255, default: '' })
   refreshToken?: string;
+
+  @ApiProperty({ required: false, type: () => StudentDto })
+  @ManyToOne(() => StudentDto, (student) => student.user)
+  student: StudentDto;
 }

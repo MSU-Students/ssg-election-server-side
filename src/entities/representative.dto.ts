@@ -25,15 +25,9 @@ export class RepresentativeDto implements Representative {
   position: string;
 
   //Relations
-
-  @OneToOne(() => SsgMemberDto)
-  @JoinColumn({ name: 'ssg_id' })
-  Account: SsgMemberDto;
-  @ApiProperty()
-  @Column({ nullable: true })
-  public ssg_id?: number;
-
-  @OneToMany(() => VoteRepDto, (voterep) => voterep.representative)
-  @JoinColumn({ name: 'voterep_id' })
+  @ApiProperty({ required: false, type: () => VoteRepDto })
+  @OneToMany(() => VoteRepDto, (voterep) => voterep.representative, {
+    nullable: true,
+  })
   voterep: VoteRepDto[];
 }
