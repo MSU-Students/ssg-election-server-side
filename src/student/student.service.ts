@@ -14,10 +14,7 @@ export class StudentService {
     return this.studentRepository.save(application);
   }
   async findAll(): Promise<StudentDto[]> {
-    return this.studentRepository.find({
-      relations: ['user', 'media'],
-    });
-    
+    return this.studentRepository.find({});
   }
   async findOne(student_id: number): Promise<StudentDto> {
     return this.studentRepository.findOne(student_id);
@@ -25,7 +22,7 @@ export class StudentService {
   async update(student_id: number, application: StudentDto) {
     return this.studentRepository.update(student_id, application);
   }
-  async deleteOne(student_id: number) {
+  async delete(student_id: number) {
     return this.studentRepository.delete(student_id);
   }
 }

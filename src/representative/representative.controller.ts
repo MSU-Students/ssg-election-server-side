@@ -66,6 +66,6 @@ export class RepresentativeController {
     @ApiResponse({ status: 200, type: RepresentativeDto })
     @Delete(':representative_id')
     async delete(@Param('representative_id') id: number) {
-      return this.RepresentativeService.deleteOne(id);
+      return this.RepresentativeService.delete(id);
     }
 }

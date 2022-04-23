@@ -56,6 +56,6 @@ export class ssgMemberController {
   @ApiResponse({ status: 200, type: SsgMemberDto })
   @Delete(':ssg_id')
   async delete(@Param('ssg_id') id: number) {
-    return this.SsgMemberService.deleteOne(id);
+    return this.SsgMemberService.delete(id);
   }
 }

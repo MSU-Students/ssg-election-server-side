@@ -64,6 +64,6 @@ export class StudentController {
   @ApiResponse({ status: 200, type: StudentDto })
   @Delete(':student_id')
   async delete(@Param('student_id') id: number) {
-    return this.studentService.deleteOne(id);
+    return this.studentService.delete(id);
   }
 }

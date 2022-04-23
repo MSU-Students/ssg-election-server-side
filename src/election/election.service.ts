@@ -24,7 +24,7 @@ export class ElectionService {
   async update(election_id: number, application: ElectionDto) {
     return this.electionRepository.update(election_id, application);
   }
-  async deleteOne(election_id: number) {
+  async delete(election_id: number) {
     return this.electionRepository.delete(election_id);
   }
 }

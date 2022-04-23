@@ -24,7 +24,7 @@ export class CandidateService {
   async update(candidate_id: number, application: CandidateDto) {
     return this.candidateRepository.update(candidate_id, application);
   }
-  async deleteOne(candidate_id: number) {
+  async delete(candidate_id: number) {
     return this.candidateRepository.delete(candidate_id);
   }
 }

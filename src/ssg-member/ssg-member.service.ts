@@ -24,7 +24,7 @@ export class SsgMemberService {
   async update(ssg_id: number, application: SsgMemberDto) {
     return this.SsgMemberRepository.update(ssg_id, application);
   }
-  async deleteOne(ssg_id: number) {
+  async delete(ssg_id: number) {
     return this.SsgMemberRepository.delete(ssg_id);
   }
 }

@@ -1,7 +1,9 @@
+import { ElectionDto } from 'src/entities/election.dto';
 import {
   Column,
   Entity,
   PrimaryGeneratedColumn,
+  ManyToOne,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { Admin } from 'src/interfaces/admin.interface';
@@ -21,4 +23,7 @@ export class AdminDto implements Admin {
   @ApiProperty({ example: 'Admin' })
   @Column({ length: 100 })
   position: string;
+
+  @ManyToOne(() => ElectionDto, (election) => election.admin)
+  election: ElectionDto;
 }

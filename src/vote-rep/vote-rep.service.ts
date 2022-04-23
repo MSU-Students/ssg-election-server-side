@@ -15,8 +15,7 @@ export class VoteRepService {
   }
   async findAll(): Promise<VoteRepDto[]> {
     return this.voteRepRepository.find({
-      relations: ['representative', 'student'],
-      
+      relations: ['student'],
     });
   }
   async findOne(voter_rep_id: number): Promise<VoteRepDto> {
@@ -25,7 +24,7 @@ export class VoteRepService {
   async update(voter_rep_id: number, application: VoteRepDto) {
     return this.voteRepRepository.update(voter_rep_id, application);
   }
-  async deleteOne(voter_rep_id: number) {
+  async delete(voter_rep_id: number) {
     return this.voteRepRepository.delete(voter_rep_id);
   }
 }

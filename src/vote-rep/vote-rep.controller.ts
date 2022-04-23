@@ -70,6 +70,6 @@ export class VoteRepController {
   @ApiResponse({ status: 200, type: VoteRepDto })
   @Delete(':voter_rep_id')
   async delete(@Param('voter_rep_id') id: number) {
-    return this.VoteRepService.deleteOne(id);
+    return this.VoteRepService.delete(id);
   }
 }

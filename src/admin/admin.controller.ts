@@ -65,6 +65,6 @@ export class AdminController {
   @ApiResponse({ status: 200, type: AdminDto })
   @Delete(':admin_id')
   async delete(@Param('admin_id') id: number) {
-    return this.adminService.deleteOne(id);
+    return this.adminService.delete(id);
   }
 }

@@ -22,7 +22,7 @@ export class AdminService {
       async update(admin_id: number, application: AdminDto) {
         return this.adminRepository.update(admin_id, application);
       }
-      async deleteOne(admin_id: number) {
+      async delete(admin_id: number) {
         return this.adminRepository.delete(admin_id);
       }
 }

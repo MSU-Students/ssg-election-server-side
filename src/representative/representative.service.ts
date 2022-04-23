@@ -15,7 +15,9 @@ export class RepresentativeService {
         return this.representativeRepository.save(application);
       }
       async findAll(): Promise<RepresentativeDto[]> {
-        return this.representativeRepository.find();
+        return this.representativeRepository.find({
+          relations: ['voterep'],
+        });
       }
       async findOne(representative_id: number): Promise<RepresentativeDto> {
         return this.representativeRepository.findOne(representative_id);
@@ -23,7 +25,7 @@ export class RepresentativeService {
       async update(representative_id: number, application: RepresentativeDto) {
         return this.representativeRepository.update(representative_id, application);
       }
-      async deleteOne(representative_id: number) {
+      async delete(representative_id: number) {
         return this.representativeRepository.delete(representative_id);
       }
 }

@@ -24,7 +24,7 @@ export class VoteSsgService {
   async update(voter_ssg_id: number, application: VoteSsgDto) {
     return this.voteSsgRepository.update(voter_ssg_id, application);
   }
-  async deleteOne(voter_ssg_id: number) {
+  async delete(voter_ssg_id: number) {
     return this.voteSsgRepository.delete(voter_ssg_id);
   }
 }

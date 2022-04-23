@@ -36,7 +36,6 @@ export class UserDto implements User {
   @Column({ length: 255, default: '' })
   refreshToken?: string;
 
-  @ApiProperty({ required: false, type: () => StudentDto })
   @ManyToOne(() => StudentDto, (student) => student.user)
   student: StudentDto;
 }

@@ -80,7 +80,4 @@ export class StudentDto implements Student {
 
   @OneToMany(() => VoteSsgDto, (votessg) => votessg.student)
   votessg: VoteSsgDto[];
-
-  @OneToMany(() => CandidateDto, (candidate) => candidate.student)
-  student: CandidateDto[];
 }

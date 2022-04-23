@@ -63,6 +63,6 @@ export class ElectionController {
   @ApiResponse({ status: 200, type: ElectionDto })
   @Delete(':election_id')
   async delete(@Param('election_id') id: number) {
-    return this.electionService.deleteOne(id);
+    return this.electionService.delete(id);
   }
 }

@@ -63,6 +63,6 @@ export class CandidateController {
   @ApiResponse({ status: 200, type: CandidateDto })
   @Delete(':candidate_id')
   async delete(@Param('candidate_id') id: number) {
-    return this.candidateService.deleteOne(id);
+    return this.candidateService.delete(id);
   }
 }
