@@ -61,15 +61,14 @@ export class StudentDto implements Student {
   @Column({ length: 100 })
   student_type: 'regular' | 'representative';
 
+  @ApiProperty()
+  @Column({ nullable: true })
+  url: number;
+
   //1-to-1 Account
   @ApiProperty({ required: false, type: () => UserDto })
   @OneToMany(() => UserDto, (user) => user.student)
   user: UserDto[];
-
-  //1-to-1 Picture
-  @ApiProperty({ required: false, type: () => MediaDto })
-  @OneToMany(() => MediaDto, (media) => media.student)
-  media: MediaDto[];
 
   //not necessary, for relation only
   @OneToMany(() => CandidateDto, (candidate) => candidate.student)

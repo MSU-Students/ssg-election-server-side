@@ -38,7 +38,7 @@ export class VoteSsgDto implements VoteSsg {
   time: string;
 
   @ApiProperty({ required: false, type: () => StudentDto })
-  @ManyToOne(() => StudentDto, (student) => student.voterep, { nullable: true })
+  @ManyToOne(() => StudentDto, (student) => student.votessg, { nullable: true })
   student: StudentDto;
 
   @ManyToMany(() => SsgMemberDto, (prime) => prime.votessg, { nullable: true })

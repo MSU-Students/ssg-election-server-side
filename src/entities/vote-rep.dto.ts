@@ -49,8 +49,4 @@ export class VoteRepDto implements VoteRep {
     { nullable: true },
   )
   representative: RepresentativeDto;
-
-  @ManyToMany(() => SsgMemberDto)
-  @JoinTable({ name: 'ssg_id' })
-  prime: SsgMemberDto[];
 }

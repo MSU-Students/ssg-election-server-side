@@ -5,6 +5,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 @Entity('profileImage')
 export class MediaDto implements Media {
+  @ApiProperty({ required: false })
   @PrimaryGeneratedColumn()
   id?: number;
 
@@ -20,8 +21,4 @@ export class MediaDto implements Media {
     type: 'mediumblob',
   })
   data: Uint8Array;
-
-  @ApiProperty({ required: false, type: () => StudentDto })
-  @ManyToOne(() => StudentDto, (student) => student.media)
-  student: StudentDto;
 }
