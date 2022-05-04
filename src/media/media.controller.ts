@@ -36,9 +36,8 @@ export class MediaController {
       },
     },
   })
-
   @ApiOperation({
-    summary: 'Upload Media',
+    summary: 'Add Media',
     operationId: 'UploadMedia',
   })
   @ApiResponse({ status: 201, type: MediaDto })
@@ -49,13 +48,23 @@ export class MediaController {
   }
 
   @ApiOperation({
-    summary: 'Get Media',
+    summary: 'Get Media by id',
     operationId: 'GetMedia',
   })
-
+  @ApiResponse({ status: 201, type: MediaDto })
   @Get(':id')
   async downloadFile(@Param('id') id: number, @Res() res: Response) {
     const fileinfo = await this.mediaService.findOne(id);
     res.type(fileinfo.mimeType).send(Buffer.from(fileinfo.data));
+  }
+
+  @ApiOperation({
+    summary: 'Delete Media by id',
+    operationId: 'DeleteMedia',
+  })
+  @ApiResponse({ status: 200, type: MediaDto })
+  @Delete(':id')
+  async delete(@Param('id') id: number) {
+    return this.mediaService.deleteOne(id);
   }
 }

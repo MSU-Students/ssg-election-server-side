@@ -17,13 +17,17 @@ export class CandidateDto implements Candidate {
   @PrimaryGeneratedColumn()
   candidate_id?: number;
 
-  @ApiProperty({ example: 'Prime Minister' })
+  @ApiProperty({ default: 'Representative' })
   @Column({ length: 1000 })
-  position_type: 'voter' | 'admin' | 'rep' | 'ssg';
+  position_type: string;
 
   @ApiProperty({ example: 'Time is gold.' })
   @Column({ length: 1000 })
   platform: string;
+
+  @ApiProperty()
+  @Column({ nullable: true })
+  url: number;
 
   //Relations
   @ApiProperty({ required: false, type: () => ElectionDto })

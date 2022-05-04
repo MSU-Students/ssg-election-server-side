@@ -24,6 +24,4 @@ export class AdminDto implements Admin {
   @Column({ length: 100 })
   position: string;
 
-  @ManyToOne(() => ElectionDto, (election) => election.admin)
-  election: ElectionDto;
 }
