@@ -25,10 +25,6 @@ export class CandidateDto implements Candidate {
   @Column({ length: 1000 })
   platform: string;
 
-  @ApiProperty()
-  @Column({ nullable: true })
-  url: number;
-
   //Relations
   @ApiProperty({ required: false, type: () => ElectionDto })
   @ManyToOne(() => ElectionDto, (election) => election.candidate)

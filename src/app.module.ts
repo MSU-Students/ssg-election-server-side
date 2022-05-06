@@ -19,15 +19,12 @@ import { AuthModule } from './user/auth.module';
 import { StudentDto } from './entities/student.dto';
 import { CandidateDto } from './entities/candidate.dto';
 import { ElectionDto } from './entities/election.dto';
-import { TempTallyDto } from './entities/temp-tally.dto';
 import { StudentController } from './student/student.controller';
 import { CandidateController } from './candidate/candidate.controller';
 import { ElectionController } from './election/election.controller';
-import { TempTallyController } from './temp-tally/temp-tally.controller';
 import { StudentService } from './student/student.service';
 import { CandidateService } from './candidate/candidate.service';
 import { ElectionService } from './election/election.service';
-import { TempTallyService } from './temp-tally/temp-tally.service';
 import { MediaService } from './media/media.service';
 import { MediaController } from './media/media.controller';
 import { MediaDto } from './entities/media.dto';
@@ -46,7 +43,6 @@ import { VoteRepService } from './vote-rep/vote-rep.service';
       StudentDto,
       CandidateDto,
       ElectionDto,
-      TempTallyDto,
       VoteRepDto,
       VoteSsgDto,
       MediaDto,
@@ -66,7 +62,6 @@ import { VoteRepService } from './vote-rep/vote-rep.service';
         StudentDto,
         CandidateDto,
         ElectionDto,
-        TempTallyDto,
         VoteRepDto,
         VoteSsgDto,
         MediaDto,
@@ -84,7 +79,6 @@ import { VoteRepService } from './vote-rep/vote-rep.service';
     StudentController,
     CandidateController,
     ElectionController,
-    TempTallyController,
     MediaController,
     VoteSsgController,
     VoteRepController,
@@ -97,7 +91,6 @@ import { VoteRepService } from './vote-rep/vote-rep.service';
     StudentService,
     CandidateService,
     ElectionService,
-    TempTallyService,
     MediaService,
     VoteSsgService,
     VoteRepService,
