@@ -61,7 +61,7 @@ export class StudentDto implements Student {
   @Column({ length: 100 })
   student_type: 'regular' | 'representative';
 
-  @ApiProperty()
+  @ApiProperty({required: false})
   @Column({ nullable: true })
   url: number;
 
