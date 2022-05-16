@@ -18,6 +18,14 @@ export class VoteRepDto implements VoteRep {
   @PrimaryGeneratedColumn()
   vote_rep_id?: number;
 
+  @ApiProperty({ type: () => StudentDto })
+  @ManyToOne(() => StudentDto, (student) => student.voterep)
+  rep1: StudentDto;
+
+  @ApiProperty({ type: () => StudentDto })
+  @ManyToOne(() => StudentDto, (student) => student.voterep)
+  rep2: StudentDto;
+
   @ApiProperty({ example: 'Acsan  M. Asgar' })
   @Column({ length: 100 })
   rep1_name: string;

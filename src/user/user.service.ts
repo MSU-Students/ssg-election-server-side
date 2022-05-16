@@ -21,7 +21,10 @@ export class UserService {
     return this.usersRepository.save(application);
   }
   async findAll(): Promise<UserDto[]> {
-    return this.usersRepository.find();
+    return this.usersRepository.find({
+      relations: ['student'],
+    });
+    
   }
   async findOne(account_id: number): Promise<UserDto> {
     return this.usersRepository.findOne(account_id);

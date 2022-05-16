@@ -17,6 +17,14 @@ export class VoteSsgDto implements VoteSsg {
   @PrimaryGeneratedColumn()
   vote_ssg_id?: number;
 
+  @ApiProperty({ type: () => StudentDto })
+  @ManyToOne(() => StudentDto, (student) => student.votessg)
+  primeMinister: StudentDto;
+
+  @ApiProperty({ type: () => StudentDto })
+  @ManyToOne(() => StudentDto, (student) => student.votessg)
+  Secretary: StudentDto;
+
   @ApiProperty({ example: 'Acsan  M. Asgar' })
   @Column({ length: 100 })
   prime_name: string;
