@@ -1,10 +1,5 @@
 import { CandidateDto } from 'src/entities/candidate.dto';
-import {
-  Column,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { Student } from '../interfaces/student.interface';
 import { UserDto } from '../user/user.entity';
@@ -61,13 +56,13 @@ export class StudentDto implements Student {
   @Column({ length: 100 })
   student_type: 'regular' | 'representative';
 
-  @ApiProperty({required: false})
+  @ApiProperty({ required: false })
   @Column({ nullable: true })
   url: number;
 
   //1-to-1 Account
   @ApiProperty({ required: false, type: () => UserDto })
-  @OneToMany(() => UserDto, (user) => user.student)
+  @OneToMany(() => UserDto, (user) => user.student, { onDelete: 'CASCADE' })
   user: UserDto[];
 
   //not necessary, for relation only

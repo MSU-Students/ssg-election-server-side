@@ -50,9 +50,33 @@ export class AuthService {
       expiresIn: this.configService.get('jwt').expiresIn,
     });
   }
-
+  private hashName(name: string) {
+    let hash = 0;
+    if (name.length == 0) return hash;
+    for (let i = 0; i < name.length; i++) {
+        const chr = name.charCodeAt(i);
+        hash = ((hash << 5) - hash) + chr;
+        hash = hash & hash;
+    }
+    return hash;
+  }
+  private hashToString(hash: number) {
+    hash = hash < 0 ? (-1 * hash) - 1: hash;
+    const hashStr = String(hash);
+    const CHARSET = 'GHRSTUV67ABCIJKLWXYZ12345MNOPQDEF890'
+    return hashStr.split(/(\d{2})/)
+      .filter(v=> v)
+      .map(n => CHARSET[Number(n) % CHARSET.length])
+      .join('');
+  }
   async register(user: UserDto): Promise<UserDto> {
-    const { username } = user;
+    const student = user.student;
+    const name = `${student.first_name}${student.last_name}${student.middle_name}`;
+    const hash = this.hashName(name + String(Math.random()));
+    const hash2 = this.hashName(String(Math.random() + name));
+    const username = this.hashToString(hash);
+    user.username = username;
+    user.password = this.hashToString(hash2);
     const foundUser = await this.userService.findByUsername(username);
     if (foundUser) {
       throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
