@@ -1,3 +1,4 @@
+import { PositionDto } from './position.dto';
 import { CandidateDto } from 'src/entities/candidate.dto';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
@@ -68,6 +69,9 @@ export class StudentDto implements Student {
   //not necessary, for relation only
   @OneToMany(() => CandidateDto, (candidate) => candidate.student)
   candidate: CandidateDto[];
+
+  @OneToMany(() => PositionDto, (position) => position.student)
+  position: PositionDto[];
 
   @OneToMany(() => VoteRepDto, (voterep) => voterep.student)
   voterep: VoteRepDto[];

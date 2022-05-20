@@ -32,6 +32,8 @@ import { VoteSsgController } from './vote-ssg/vote-ssg.controller';
 import { VoteSsgService } from './vote-ssg/vote-ssg.service';
 import { VoteRepController } from './vote-rep/vote-rep.controller';
 import { VoteRepService } from './vote-rep/vote-rep.service';
+import { PositionService } from './position/position.service';
+import { PositionController } from './position/position.controller';
 
 @Module({
   imports: [
@@ -82,6 +84,7 @@ import { VoteRepService } from './vote-rep/vote-rep.service';
     MediaController,
     VoteSsgController,
     VoteRepController,
+    PositionController,
   ],
   providers: [
     UserService,
@@ -94,6 +97,7 @@ import { VoteRepService } from './vote-rep/vote-rep.service';
     MediaService,
     VoteSsgService,
     VoteRepService,
+    PositionService,
   ],
 })
 export class AppModule {}
