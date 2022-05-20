@@ -1,3 +1,4 @@
+import { PositionDto } from './entities/position.dto';
 import { VoteSsgDto } from './entities/vote-ssg.dto';
 import { VoteRepDto } from './entities/vote-rep.dto';
 
@@ -42,6 +43,7 @@ import { PositionController } from './position/position.controller';
       RepresentativeDto,
       AdminDto,
       SsgMemberDto,
+      PositionDto,
       StudentDto,
       CandidateDto,
       ElectionDto,
@@ -61,6 +63,7 @@ import { PositionController } from './position/position.controller';
         RepresentativeDto,
         AdminDto,
         SsgMemberDto,
+        PositionDto,
         StudentDto,
         CandidateDto,
         ElectionDto,
