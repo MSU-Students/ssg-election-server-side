@@ -14,7 +14,7 @@ export class StudentDto implements Student {
   student_id?: number;
 
   @ApiProperty({ example: '01', required: false })
-  @Column({ type: 'int', nullable: true })
+  @Column({ nullable: true })
   school_id: number;
 
   @ApiProperty({ example: 'Najmah' })

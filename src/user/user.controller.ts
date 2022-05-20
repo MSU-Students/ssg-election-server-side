@@ -36,7 +36,7 @@ export class UserController {
   }
 
   @ApiOperation({ summary: 'Get all Users', operationId: 'GetUserss' })
-  @ApiResponse({ status: 200, type: UserDto })
+  @ApiResponse({ status: 200, type: [UserDto] })
   @Get()
   async findAll(): Promise<UserDto[]> {
     return this.usersService.findAll();

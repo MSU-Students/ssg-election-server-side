@@ -34,7 +34,7 @@ export class StudentController {
   }
   //Select * from student
   @ApiOperation({ summary: 'Get all Students', operationId: 'GetStudents' })
-  @ApiResponse({ status: 200, type: StudentDto })
+  @ApiResponse({ status: 200, type: [StudentDto] })
   @Get()
   async findAll(): Promise<StudentDto[]> {
     return this.studentService.findAll();
