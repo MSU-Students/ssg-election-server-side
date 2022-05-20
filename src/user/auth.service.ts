@@ -73,10 +73,11 @@ export class AuthService {
     const student = user.student;
     const name = `${student.first_name}${student.last_name}${student.middle_name}`;
     const hash = this.hashName(name + String(Math.random()));
-    const hash2 = this.hashName(String(Math.random() + name));
     const username = this.hashToString(hash);
+
     user.username = username;
-    user.password = this.hashToString(hash2);
+    user.password = username + String(student.school_id || 0);
+
     const foundUser = await this.userService.findByUsername(username);
     if (foundUser) {
       throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
