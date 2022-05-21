@@ -63,7 +63,7 @@ export class StudentDto implements Student {
 
   //1-to-1 Account
   @ApiProperty({ required: false, type: () => UserDto })
-  @OneToMany(() => UserDto, (user) => user.student, { onDelete: 'CASCADE' })
+  @OneToMany(() => UserDto, (user) => user.student)
   user: UserDto[];
 
   //not necessary, for relation only
@@ -75,8 +75,12 @@ export class StudentDto implements Student {
 
   @OneToMany(() => VoteRepDto, (voterep) => voterep.student)
   voterep: VoteRepDto[];
+
+  @ApiProperty({ required: false, type: () => VoteRepDto })
   @OneToMany(() => VoteRepDto, (rep1) => rep1.student)
   rep1: VoteRepDto[];
+
+  @ApiProperty({ required: false, type: () => VoteRepDto })
   @OneToMany(() => VoteRepDto, (rep2) => rep2.student)
   rep2: VoteRepDto[];
 

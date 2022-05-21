@@ -13,6 +13,7 @@ import { User } from '../interfaces/user.interface';
 
 @Entity('user')
 export class UserDto implements User {
+  @ApiProperty({ required: false })
   @PrimaryGeneratedColumn()
   account_id?: number;
 
@@ -37,6 +38,6 @@ export class UserDto implements User {
   refreshToken?: string;
 
   @ApiProperty({ required: false, type: () => StudentDto })
-  @ManyToOne(() => StudentDto, (student) => student.user)
+  @ManyToOne(() => StudentDto, (student) => student.user, { onDelete: 'CASCADE' })
   student: StudentDto;
 }

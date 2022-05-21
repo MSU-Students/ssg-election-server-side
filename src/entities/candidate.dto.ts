@@ -3,9 +3,7 @@ import { ElectionDto } from 'src/entities/election.dto';
 import {
   Column,
   Entity,
-  JoinColumn,
   PrimaryGeneratedColumn,
-  OneToOne,
   ManyToOne,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
@@ -17,7 +15,7 @@ export class CandidateDto implements Candidate {
   @PrimaryGeneratedColumn()
   candidate_id?: number;
 
-  @ApiProperty({ default: 'Representative' })
+  @ApiProperty({ default: 'Prime' })
   @Column({ length: 1000 })
   position_type: string;
 

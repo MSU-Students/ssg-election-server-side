@@ -19,11 +19,11 @@ export class VoteRepDto implements VoteRep {
   vote_rep_id?: number;
 
   @ApiProperty({ type: () => StudentDto })
-  @ManyToOne(() => StudentDto, (student) => student.voterep)
+  @ManyToOne(() => StudentDto, (student) => student.rep1)
   rep1: StudentDto;
 
   @ApiProperty({ type: () => StudentDto })
-  @ManyToOne(() => StudentDto, (student) => student.voterep)
+  @ManyToOne(() => StudentDto, (student) => student.rep2)
   rep2: StudentDto;
 
   @ApiProperty({ example: 'Acsan  M. Asgar' })
