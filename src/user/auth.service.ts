@@ -1,6 +1,7 @@
+import { LoginUserDto } from './user.dto';
 import { ConfigService } from '@nestjs/config';
 import { UserService } from './user.service';
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpCode, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { User } from '../interfaces/user.interface';
@@ -23,21 +24,26 @@ export class AuthService {
     return null;
   }
 
-  async login(user: any) {
+  async login(login: LoginUserDto) {
     // use sub for userId to be consistent with JWT Standards
-    const accessToken = this.getAccessToken(user);
-    const refreshToken = this.jwtService.sign({ userId: user.account_id });
-    let expiresIn = new Date();
-    expiresIn.setSeconds(
-      expiresIn.getSeconds() +
-        parseInt(this.configService.get('jwt').expiresIn, 10),
-    );
-    return {
-      userId: user.account_id,
-      accessToken,
-      expiresIn,
-      refreshToken,
-    };
+    const user = await this.validateUser(login.username, login.password);
+    if (user) {
+      const accessToken = this.getAccessToken(user as UserDto);
+      const refreshToken = this.jwtService.sign({ userId: user.account_id });
+      let expiresIn = new Date();
+      expiresIn.setSeconds(
+        expiresIn.getSeconds() +
+          parseInt(this.configService.get('jwt').expiresIn, 10),
+      );
+      return {
+        userId: user.account_id,
+        accessToken,
+        expiresIn,
+        refreshToken,
+      };
+    } else {
+      throw new HttpException('Wrong Account Password', HttpStatus.UNAUTHORIZED);
+    }
   }
 
   getAccessToken(user: UserDto) {

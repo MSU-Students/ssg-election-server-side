@@ -44,24 +44,24 @@ export class AuthController {
     summary: 'Login User',
     operationId: 'login',
   })
-  @ApiParam({
-    name: 'user',
+  @ApiBody({
     type: LoginUserDto,
   })
-  @UseGuards(LocalAuthGuard)
   @ApiResponse({
     status: 200,
     type: AccessTokenDto,
   })
   @Post('login')
-  async login(@Request() req) {
+  async login(@Body() user: LoginUserDto) {
     const { refreshToken, accessToken, userId } = await this.authService.login(
-      req.user,
+      user,
     );
     await this.userService.setCurrentRefreshToken(refreshToken, userId);
     return { refreshToken, accessToken };
   }
 
+  @ApiBearerAuth()
+  @UseGuards(LocalAuthGuard)
   @ApiOperation({
     summary: 'Refresh Token',
     operationId: 'refreshToken',
@@ -73,7 +73,6 @@ export class AuthController {
     status: 200,
     type: AccessTokenDto,
   })
-  @ApiBearerAuth()
   @Post('refresh_token')
   async refreshToken(@Request() req) {
     const accessToken = this.authService.getAccessToken(req.user);
