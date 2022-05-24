@@ -13,9 +13,11 @@ import { PassportModule } from '@nestjs/passport';
 import { UserController } from './user.controller';
 import { UserDto } from './user.entity';
 import posConfiguration from '../config/configuration';
+import { StudentService } from '../student/student.service';
+import { StudentDto } from '../entities/student.dto';
 @Module({
   imports: [
-    TypeOrmModule.forFeature([UserDto]),
+    TypeOrmModule.forFeature([UserDto, StudentDto]),
     PassportModule,
     ConfigModule,
     JwtModule.registerAsync({
@@ -31,6 +33,7 @@ import posConfiguration from '../config/configuration';
   ],
   providers: [
     AuthService,
+    StudentService,
     LocalStrategy,
     JwTStrategy,
     UserService,

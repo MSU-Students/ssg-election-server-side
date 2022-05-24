@@ -1,27 +1,34 @@
 import { LoginUserDto } from './user.dto';
 import { ConfigService } from '@nestjs/config';
 import { UserService } from './user.service';
-import { HttpCode, HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  HttpCode,
+  HttpException,
+  HttpStatus,
+  Injectable,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { User } from '../interfaces/user.interface';
 import { UserDto } from './user.entity';
+import { StudentService } from '../student/student.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private userService: UserService,
+    private studentService: StudentService,
     private configService: ConfigService,
     private jwtService: JwtService,
   ) {}
 
-  async validateUser(username: string, pass: string): Promise<User> {
+  async validateUser(username: string, pass: string): Promise<User | null | false> {
     const user = await this.userService.findByUsername(username);
     const passwordMatched = user && (await bcrypt.compare(pass, user.password));
     if (passwordMatched && user.status != 'disabled') {
       return user;
     }
-    return null;
+    return !user ? null : false;
   }
 
   async login(login: LoginUserDto) {
@@ -41,8 +48,16 @@ export class AuthService {
         expiresIn,
         refreshToken,
       };
-    } else {
-      throw new HttpException('Wrong Account Password', HttpStatus.UNAUTHORIZED);
+    } else if (user === false) {
+      throw new HttpException(
+        'Wrong Account Password',
+        HttpStatus.UNAUTHORIZED,
+      );
+    } else  {
+      throw new HttpException(
+        'Account does not Exist',
+        HttpStatus.UNAUTHORIZED,
+      );
     }
   }
 
@@ -50,6 +65,7 @@ export class AuthService {
     const payload = {
       username: user.username,
       sub: user.account_id,
+      role: user.userType,
     };
     return this.jwtService.sign(payload, {
       secret: this.configService.get('jwt').secret,
@@ -60,29 +76,31 @@ export class AuthService {
     let hash = 0;
     if (name.length == 0) return hash;
     for (let i = 0; i < name.length; i++) {
-        const chr = name.charCodeAt(i);
-        hash = ((hash << 5) - hash) + chr;
-        hash = hash & hash;
+      const chr = name.charCodeAt(i);
+      hash = (hash << 5) - hash + chr;
+      hash = hash & hash;
     }
     return hash;
   }
   private hashToString(hash: number) {
-    hash = hash < 0 ? (-1 * hash) - 1: hash;
+    hash = hash < 0 ? -1 * hash - 1 : hash;
     const hashStr = String(hash);
-    const CHARSET = 'GHRSTUV67ABCIJKLWXYZ12345MNOPQDEF890'
-    return hashStr.split(/(\d{2})/)
-      .filter(v=> v)
-      .map(n => CHARSET[Number(n) % CHARSET.length])
+    const CHARSET = 'GHRSTUV67ABCIJKLWXYZ12345MNOPQDEF890';
+    return hashStr
+      .split(/(\d{2})/)
+      .filter((v) => v)
+      .map((n) => CHARSET[Number(n) % CHARSET.length])
       .join('');
   }
   async register(user: UserDto): Promise<UserDto> {
-    const student = user.student;
+    const student = typeof user.student == 'number' ? 
+      await this.studentService.findOne(user.student) : user.student;
     const name = `${student.first_name}${student.last_name}${student.middle_name}`;
     const hash = this.hashName(name + String(Math.random()));
     const username = this.hashToString(hash);
 
     user.username = username;
-    user.password = username + String(student.school_id || 0);
+    const res = (user.password = username + String(student.school_id || 0));
 
     const foundUser = await this.userService.findByUsername(username);
     if (foundUser) {
@@ -91,6 +109,7 @@ export class AuthService {
     const hashedPassword = await bcrypt.hash(user.password, 10);
     user.password = hashedPassword;
     user.username = user.username.toLowerCase();
+    console.log(res);
     return await this.userService.create(user);
   }
 
