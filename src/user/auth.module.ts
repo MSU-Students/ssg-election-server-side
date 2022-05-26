@@ -1,3 +1,5 @@
+import { VoteRepDto } from '../entities/vote-rep.dto';
+import { VoteRepService } from './../vote-rep/vote-rep.service';
 import { JwtRefreshTokenStrategy } from './jwt.refresh.token.strategy';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtModule } from '@nestjs/jwt';
@@ -17,7 +19,7 @@ import { StudentService } from '../student/student.service';
 import { StudentDto } from '../entities/student.dto';
 @Module({
   imports: [
-    TypeOrmModule.forFeature([UserDto, StudentDto]),
+    TypeOrmModule.forFeature([UserDto, StudentDto, VoteRepDto]),
     PassportModule,
     ConfigModule,
     JwtModule.registerAsync({
@@ -34,6 +36,7 @@ import { StudentDto } from '../entities/student.dto';
   providers: [
     AuthService,
     StudentService,
+    VoteRepService,
     LocalStrategy,
     JwTStrategy,
     UserService,

@@ -1,3 +1,4 @@
+import { VoteRepDto } from 'src/entities/vote-rep.dto';
 import { StudentDto } from 'src/entities/student.dto';
 import {
   Column,
@@ -38,6 +39,9 @@ export class UserDto implements User {
   refreshToken?: string;
 
   @ApiProperty({ required: false, type: () => StudentDto })
-  @ManyToOne(() => StudentDto, (student) => student.user, { onDelete: 'CASCADE' })
+  @ManyToOne(() => StudentDto, (student) => student.user, { onDelete: 'CASCADE', eager: true })
   student: StudentDto;
+
+  @ApiProperty({ required: false, type: VoteRepDto})
+  vote: VoteRepDto;
 }

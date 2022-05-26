@@ -1,3 +1,4 @@
+import { VoteRepService } from './../vote-rep/vote-rep.service';
 import { UserService } from './user.service';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { LocalAuthGuard } from './local.auth.guard';
@@ -25,6 +26,7 @@ export class AuthController {
   constructor(
     private readonly authService: AuthService,
     private readonly userService: UserService,
+    private readonly voterepservice: VoteRepService,
   ) {}
 
   @ApiBody({ type: UserDto })
@@ -100,6 +102,7 @@ export class AuthController {
   @Get('profile')
   async getProfile(@Request() req) {
     const user = await this.userService.findOne(req.user.userId);
+    user.vote = await this.voterepservice.find(user.student.student_id);
     return {
       ...user,
       password: undefined,

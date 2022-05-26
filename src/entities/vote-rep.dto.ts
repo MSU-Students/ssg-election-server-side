@@ -57,4 +57,6 @@ export class VoteRepDto implements VoteRep {
     { nullable: true },
   )
   representative: RepresentativeDto;
+
+  
 }
