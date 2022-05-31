@@ -1,3 +1,5 @@
+import { VoteSsgService } from './../vote-ssg/vote-ssg.service';
+import { VoteSsgDto } from './../entities/vote-ssg.dto';
 import { VoteRepDto } from '../entities/vote-rep.dto';
 import { VoteRepService } from './../vote-rep/vote-rep.service';
 import { JwtRefreshTokenStrategy } from './jwt.refresh.token.strategy';
@@ -19,7 +21,7 @@ import { StudentService } from '../student/student.service';
 import { StudentDto } from '../entities/student.dto';
 @Module({
   imports: [
-    TypeOrmModule.forFeature([UserDto, StudentDto, VoteRepDto]),
+    TypeOrmModule.forFeature([UserDto, StudentDto, VoteRepDto, VoteSsgDto]),
     PassportModule,
     ConfigModule,
     JwtModule.registerAsync({
@@ -37,6 +39,7 @@ import { StudentDto } from '../entities/student.dto';
     AuthService,
     StudentService,
     VoteRepService,
+    VoteSsgService,
     LocalStrategy,
     JwTStrategy,
     UserService,

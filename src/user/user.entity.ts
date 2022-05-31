@@ -1,3 +1,4 @@
+import { VoteSsgDto } from './../entities/vote-ssg.dto';
 import { VoteRepDto } from 'src/entities/vote-rep.dto';
 import { StudentDto } from 'src/entities/student.dto';
 import {
@@ -44,4 +45,7 @@ export class UserDto implements User {
 
   @ApiProperty({ required: false, type: VoteRepDto})
   vote: VoteRepDto;
+
+  @ApiProperty({ required: false, type: VoteSsgDto})
+  votessg: VoteSsgDto;
 }

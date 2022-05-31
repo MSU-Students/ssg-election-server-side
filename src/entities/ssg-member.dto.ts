@@ -27,7 +27,7 @@ export class SsgMemberDto implements SsgMember {
   position: string;
 
   @ApiProperty({ required: false, type: () => VoteSsgDto })
-  @ManyToMany(() => VoteSsgDto, (votessg) => votessg.prime, { nullable: true })
+  @ManyToMany(() => VoteSsgDto, (votessg) => votessg.primeMinister, { nullable: true })
   @JoinTable()
   votessg: VoteSsgDto[];
 }

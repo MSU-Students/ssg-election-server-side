@@ -1,3 +1,5 @@
+import { RepresentativeDto } from 'src/entities/representative.dto';
+import { Representative } from './../interfaces/representative.interface';
 import { StudentDto } from 'src/entities/student.dto';
 import { ElectionDto } from 'src/entities/election.dto';
 import {
@@ -16,7 +18,7 @@ export class CandidateDto implements Candidate {
   candidate_id?: number;
 
   @ApiProperty({ default: 'Prime' })
-  @Column({ length: 1000 })
+  @Column({ length: 100 })
   position_type: string;
 
   @ApiProperty({ example: 'Time is gold.' })
@@ -31,4 +33,7 @@ export class CandidateDto implements Candidate {
   @ApiProperty({ required: false, type: () => StudentDto })
   @ManyToOne(() => StudentDto, (student) => student.candidate)
   student: StudentDto;
+  
+  @ManyToOne(() => RepresentativeDto, (rep) => rep.candidate)
+  rep: RepresentativeDto;
 }

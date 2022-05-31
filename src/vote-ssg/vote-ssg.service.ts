@@ -15,8 +15,18 @@ export class VoteSsgService {
   }
   async findAll(): Promise<VoteSsgDto[]> {
     return this.voteSsgRepository.find({
-      relations: ['student'],
+      relations: ['prime', 'secretary'],
     });
+  }
+
+  async find(student_id: number) {
+    const votes = await this.voteSsgRepository.find({
+      relations: ['prime', 'secretary'],
+      where: {
+        student: student_id,
+      },
+    });
+    return votes[0] || undefined;
   }
   async findOne(voter_ssg_id: number): Promise<VoteSsgDto> {
     return this.voteSsgRepository.findOne(voter_ssg_id);

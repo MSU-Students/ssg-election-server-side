@@ -19,20 +19,12 @@ export class VoteRepDto implements VoteRep {
   vote_rep_id?: number;
 
   @ApiProperty({ type: () => StudentDto })
-  @ManyToOne(() => StudentDto, (student) => student.rep1)
+  @ManyToOne(() => StudentDto, (rep1) => rep1.rep2Info)
   rep1: StudentDto;
 
   @ApiProperty({ type: () => StudentDto })
-  @ManyToOne(() => StudentDto, (student) => student.rep2)
+  @ManyToOne(() => StudentDto, (rep2) => rep2.rep2Info)
   rep2: StudentDto;
-
-  @ApiProperty({ example: 'Acsan  M. Asgar' })
-  @Column({ length: 100 })
-  rep1_name: string;
-
-  @ApiProperty({ example: 'Najmah A. Omar' })
-  @Column({ length: 100 })
-  rep2_name: string;
 
   @ApiProperty({ example: '4th' })
   @Column({ length: 100 })

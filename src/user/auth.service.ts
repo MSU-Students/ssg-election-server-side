@@ -12,6 +12,7 @@ import * as bcrypt from 'bcrypt';
 import { User } from '../interfaces/user.interface';
 import { UserDto } from './user.entity';
 import { StudentService } from '../student/student.service';
+import { StudentDto } from 'src/entities/student.dto';
 
 @Injectable()
 export class AuthService {
@@ -108,8 +109,7 @@ export class AuthService {
     }
     const hashedPassword = await bcrypt.hash(user.password, 10);
     user.password = hashedPassword;
-    user.username = user.username.toLowerCase();
-    console.log(res);
+    user.username = user.username.toUpperCase();
     return await this.userService.create(user);
   }
 

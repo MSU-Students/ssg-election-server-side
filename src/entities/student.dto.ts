@@ -63,27 +63,36 @@ export class StudentDto implements Student {
 
   //1-to-1 Account
   @ApiProperty({ required: false, type: () => UserDto })
-  @OneToMany(() => UserDto, (user) => user.student, { onDelete: 'CASCADE' })
+  @OneToMany(() => UserDto, (user) => user.student)
   user: UserDto[];
 
   //not necessary, for relation only
-  @OneToMany(() => CandidateDto, (candidate) => candidate.student)
+  @OneToMany(() => CandidateDto, (candidate) => candidate.student, { onDelete: 'CASCADE' })
   candidate: CandidateDto[];
 
   @OneToMany(() => PositionDto, (position) => position.student)
   position: PositionDto[];
 
+  //--------vote rep
+  
   @OneToMany(() => VoteRepDto, (voterep) => voterep.student)
   voterep: VoteRepDto[];
 
-  @ApiProperty({ required: false, type: () => VoteRepDto })
-  @OneToMany(() => VoteRepDto, (rep1) => rep1.student)
-  rep1: VoteRepDto[];
+  @OneToMany(() => VoteRepDto, (rep1Info) => rep1Info.rep1)
+  rep1Info: VoteRepDto[];
 
-  @ApiProperty({ required: false, type: () => VoteRepDto })
-  @OneToMany(() => VoteRepDto, (rep2) => rep2.student)
-  rep2: VoteRepDto[];
+  @OneToMany(() => VoteRepDto, (rep2Info) => rep2Info.rep2)
+  rep2Info: VoteRepDto[];
+
+  //--------vote ssg
 
   @OneToMany(() => VoteSsgDto, (votessg) => votessg.student)
   votessg: VoteSsgDto[];
+
+  @OneToMany(() => VoteSsgDto, (primeInfo) => primeInfo.prime)
+  primeInfo: VoteSsgDto[];
+
+  @OneToMany(() => VoteSsgDto, (secretaryInfo) => secretaryInfo.secretary)
+  secretaryInfo: VoteSsgDto[];
+  static user: any;
 }

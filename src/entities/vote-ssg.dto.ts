@@ -18,20 +18,12 @@ export class VoteSsgDto implements VoteSsg {
   vote_ssg_id?: number;
 
   @ApiProperty({ type: () => StudentDto })
-  @ManyToOne(() => StudentDto, (student) => student.votessg)
-  primeMinister: StudentDto;
+  @ManyToOne(() => StudentDto, (prime) => prime.primeInfo)
+  prime: StudentDto;
 
   @ApiProperty({ type: () => StudentDto })
-  @ManyToOne(() => StudentDto, (student) => student.votessg)
-  Secretary: StudentDto;
-
-  @ApiProperty({ example: 'Acsan  M. Asgar' })
-  @Column({ length: 100 })
-  prime_name: string;
-
-  @ApiProperty({ example: 'Najmah A. Omar' })
-  @Column({ length: 100 })
-  secretary_name: string;
+  @ManyToOne(() => StudentDto, (secretary) => secretary.secretaryInfo)
+  secretary: StudentDto;
 
   @ApiProperty({ example: '4th' })
   @Column({ length: 100 })
@@ -49,6 +41,6 @@ export class VoteSsgDto implements VoteSsg {
   @ManyToOne(() => StudentDto, (student) => student.votessg, { nullable: true })
   student: StudentDto;
 
-  @ManyToMany(() => SsgMemberDto, (prime) => prime.votessg, { nullable: true })
-  prime: SsgMemberDto[];
+  @ManyToMany(() => SsgMemberDto, (primeMinister) => primeMinister.votessg, { nullable: true })
+  primeMinister: SsgMemberDto[];
 }

@@ -1,3 +1,4 @@
+import { VoteSsgService } from './../vote-ssg/vote-ssg.service';
 import { VoteRepService } from './../vote-rep/vote-rep.service';
 import { UserService } from './user.service';
 import { JwtAuthGuard } from './jwt-auth.guard';
@@ -27,6 +28,7 @@ export class AuthController {
     private readonly authService: AuthService,
     private readonly userService: UserService,
     private readonly voterepservice: VoteRepService,
+    private readonly votessgservice: VoteSsgService,
   ) {}
 
   @ApiBody({ type: UserDto })
@@ -103,6 +105,7 @@ export class AuthController {
   async getProfile(@Request() req) {
     const user = await this.userService.findOne(req.user.userId);
     user.vote = await this.voterepservice.find(user.student.student_id);
+    user.votessg = await this.votessgservice.find(user.student.student_id);
     return {
       ...user,
       password: undefined,
