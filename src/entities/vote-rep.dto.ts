@@ -1,3 +1,4 @@
+import { ElectionDto } from 'src/entities/election.dto';
 import { SsgMemberDto } from 'src/entities/ssg-member.dto';
 import { ApiProperty } from '@nestjs/swagger';
 import {
@@ -12,7 +13,7 @@ import { VoteRep } from 'src/interfaces/vote-rep.interface';
 import { RepresentativeDto } from './representative.dto';
 import { StudentDto } from './student.dto';
 
-@Entity('Vote_Rep')
+@Entity('voteRep')
 export class VoteRepDto implements VoteRep {
   @ApiProperty({ required: false })
   @PrimaryGeneratedColumn()
@@ -26,9 +27,9 @@ export class VoteRepDto implements VoteRep {
   @ManyToOne(() => StudentDto, (rep2) => rep2.rep2Info)
   rep2: StudentDto;
 
-  @ApiProperty({ example: '4th' })
+  @ApiProperty({ default: 'Not Vote Yet' })
   @Column({ length: 100 })
-  academic_yr: string;
+  voter_status: string;
 
   @ApiProperty({ example: 'February 28, 2022' })
   @Column({ length: 100 })
@@ -41,6 +42,10 @@ export class VoteRepDto implements VoteRep {
   @ApiProperty({ required: false, type: () => StudentDto })
   @ManyToOne(() => StudentDto, (student) => student.voterep, { nullable: true })
   student: StudentDto;
+
+  @ApiProperty({ required: false, type: () => ElectionDto })
+  @ManyToOne(() => ElectionDto, (election) => election.voterep, { nullable: true })
+  election: ElectionDto;
 
   //for relation only
   @ManyToOne(

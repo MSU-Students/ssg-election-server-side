@@ -51,5 +51,8 @@ export class ElectionDto implements Election {
 
   @OneToMany(() => CandidateDto, (candidate) => candidate.election)
   candidate: CandidateDto[];
+
+  @OneToMany(() => CandidateDto, (voterep) => voterep.election)
+  voterep: CandidateDto[];
   
 }

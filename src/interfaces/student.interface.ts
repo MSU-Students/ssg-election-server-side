@@ -10,5 +10,5 @@ export interface Student {
   college: string;
   course: string;
   department: string;
-  student_type: 'regular' | 'representative';
+  student_type: string;
 }
