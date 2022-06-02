@@ -1,3 +1,4 @@
+import { AdminDto } from 'src/entities/admin.dto';
 import { VoteSsgDto } from './../entities/vote-ssg.dto';
 import { VoteRepDto } from 'src/entities/vote-rep.dto';
 import { StudentDto } from 'src/entities/student.dto';
@@ -43,6 +44,11 @@ export class UserDto implements User {
   @ManyToOne(() => StudentDto, (student) => student.user, { onDelete: 'CASCADE', eager: true })
   student: StudentDto;
 
+  @ApiProperty({ required: false, type: () => AdminDto })
+  @ManyToOne(() => AdminDto, (admin) => admin.user)
+  admin: AdminDto;
+
+  @ApiProperty({type: () => VoteRepDto })
   @ApiProperty({ required: false, type: VoteRepDto})
   vote: VoteRepDto;
 

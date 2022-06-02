@@ -27,10 +27,6 @@ export class VoteRepDto implements VoteRep {
   @ManyToOne(() => StudentDto, (rep2) => rep2.rep2Info)
   rep2: StudentDto;
 
-  @ApiProperty({ default: 'Not Vote Yet' })
-  @Column({ length: 100 })
-  voter_status: string;
-
   @ApiProperty({ example: 'February 28, 2022' })
   @Column({ length: 100 })
   date: string;

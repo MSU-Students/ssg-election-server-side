@@ -22,7 +22,7 @@ export class UserService {
   }
   async findAll(): Promise<UserDto[]> {
     return this.usersRepository.find({
-      relations: ['student'],
+      relations: ['student', 'admin'],
     });
     
   }

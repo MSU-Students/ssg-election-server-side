@@ -67,14 +67,14 @@ export class StudentDto implements Student {
   user: UserDto[];
 
   //not necessary, for relation only
-  @OneToMany(() => CandidateDto, (candidate) => candidate.student, { onDelete: 'CASCADE' })
+  @OneToMany(() => CandidateDto, (candidate) => candidate.student)
   candidate: CandidateDto[];
 
   @OneToMany(() => PositionDto, (position) => position.student)
   position: PositionDto[];
 
   //--------vote rep
-  
+
   @OneToMany(() => VoteRepDto, (voterep) => voterep.student)
   voterep: VoteRepDto[];
 
@@ -94,5 +94,4 @@ export class StudentDto implements Student {
 
   @OneToMany(() => VoteSsgDto, (secretaryInfo) => secretaryInfo.secretary)
   secretaryInfo: VoteSsgDto[];
-  static user: any;
 }

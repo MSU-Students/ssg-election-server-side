@@ -14,9 +14,7 @@ export class ElectionService {
     return this.electionRepository.save(application);
   }
   async findAll(): Promise<ElectionDto[]> {
-    return this.electionRepository.find({
-      relations: ['admin'],
-    });
+    return this.electionRepository.find();
   }
   async findOne(election_id: number): Promise<ElectionDto> {
     return this.electionRepository.findOne(election_id);

@@ -45,9 +45,9 @@ export class ElectionDto implements Election {
   @Column({ length: 100 })
   end_time: string;
 
-  @OneToOne(() => AdminDto, { nullable: true })
-  @JoinColumn({ name: 'admin_id' })
-  admin: AdminDto;
+  @ApiProperty({ example: 'Active' })
+  @Column({ length: 100 })
+  status: string;
 
   @OneToMany(() => CandidateDto, (candidate) => candidate.election)
   candidate: CandidateDto[];

@@ -19,9 +19,11 @@ import { UserDto } from './user.entity';
 import posConfiguration from '../config/configuration';
 import { StudentService } from '../student/student.service';
 import { StudentDto } from '../entities/student.dto';
+import { AdminDto } from 'src/entities/admin.dto';
+import { AdminService } from 'src/admin/admin.service';
 @Module({
   imports: [
-    TypeOrmModule.forFeature([UserDto, StudentDto, VoteRepDto, VoteSsgDto]),
+    TypeOrmModule.forFeature([UserDto, AdminDto, StudentDto, VoteRepDto, VoteSsgDto]),
     PassportModule,
     ConfigModule,
     JwtModule.registerAsync({
@@ -38,6 +40,7 @@ import { StudentDto } from '../entities/student.dto';
   providers: [
     AuthService,
     StudentService,
+    AdminService,
     VoteRepService,
     VoteSsgService,
     LocalStrategy,
