@@ -46,10 +46,10 @@ export class VoteRepDto implements VoteRep {
   //for relation only
   @ManyToOne(
     () => RepresentativeDto,
-    (representative) => representative.voterep,
+    (rep) => rep.voterep,
     { nullable: true },
   )
-  representative: RepresentativeDto;
+  rep: RepresentativeDto;
 
   
 }

@@ -1,3 +1,5 @@
+import { ElectionDto } from './election.dto';
+import { StudentDto } from './student.dto';
 import { CandidateDto } from './candidate.dto';
 import { SsgMemberDto } from './ssg-member.dto';
 import { Representative } from '../interfaces/representative.interface';
@@ -18,26 +20,28 @@ export class RepresentativeDto implements Representative {
   @PrimaryGeneratedColumn()
   representative_id?: number;
 
-  @ApiProperty({})
-  @Column({ length: 100 })
-  academic_yr: string;
-
   @ApiProperty({ example: 'Representative' })
   @Column({ length: 100 })
   position: string;
 
   @ApiProperty({ example: 'Time is gold.' })
-  @Column({ length: 1000 })
+  @Column({ length: 1000 , nullable: true})
   platform: string;
 
+  //Relations
   @ApiProperty({ required: false, type: () => CandidateDto })
   @ManyToOne(() => CandidateDto, (candidate) => candidate.rep)
   candidate: CandidateDto;
+  
+  @ApiProperty({ required: false, type: () => StudentDto })
+  @ManyToOne(() => StudentDto, (student) => student.rep)
+  student: StudentDto[];
 
-  //Relations
+  @ApiProperty({ required: false, type: () => ElectionDto })
+  @ManyToOne(() => ElectionDto, (election) => election.rep)
+  election: ElectionDto[];
+
   @ApiProperty({ required: false, type: () => VoteRepDto })
-  @OneToMany(() => VoteRepDto, (voterep) => voterep.representative, {
-    nullable: true,
-  })
+  @OneToMany(() => VoteRepDto, (voterep) => voterep.rep)
   voterep: VoteRepDto[];
 }

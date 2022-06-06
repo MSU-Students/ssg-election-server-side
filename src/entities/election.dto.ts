@@ -1,3 +1,5 @@
+import { VoteRepDto } from 'src/entities/vote-rep.dto';
+import { RepresentativeDto } from 'src/entities/representative.dto';
 import { CandidateDto } from './candidate.dto';
 import { AdminDto } from 'src/entities/admin.dto';
 import {
@@ -52,7 +54,10 @@ export class ElectionDto implements Election {
   @OneToMany(() => CandidateDto, (candidate) => candidate.election)
   candidate: CandidateDto[];
 
-  @OneToMany(() => CandidateDto, (voterep) => voterep.election)
-  voterep: CandidateDto[];
+  @OneToMany(() => VoteRepDto, (voterep) => voterep.election)
+  voterep: VoteRepDto[];
+
+  @OneToMany(() => RepresentativeDto, (rep) => rep.election)
+  rep: RepresentativeDto[];
   
 }
