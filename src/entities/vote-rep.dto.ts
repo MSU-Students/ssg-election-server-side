@@ -44,12 +44,12 @@ export class VoteRepDto implements VoteRep {
   election: ElectionDto;
 
   //for relation only
-  @ManyToOne(
-    () => RepresentativeDto,
-    (rep) => rep.voterep,
-    { nullable: true },
-  )
-  rep: RepresentativeDto;
+  // @ManyToOne(
+  //   () => RepresentativeDto,
+  //   (rep) => rep.voterep,
+  //   { nullable: true },
+  // )
+  // rep: RepresentativeDto;
 
   
 }

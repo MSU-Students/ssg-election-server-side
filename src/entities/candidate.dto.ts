@@ -34,6 +34,6 @@ export class CandidateDto implements Candidate {
   @ManyToOne(() => StudentDto, (student) => student.candidate)
   student: StudentDto;
   
-  @ManyToOne(() => RepresentativeDto, (rep) => rep.candidate)
-  rep: RepresentativeDto;
+  // @ManyToOne(() => RepresentativeDto, (rep) => rep.candidate)
+  // rep: RepresentativeDto;
 }

@@ -21,7 +21,7 @@ export class RepresentativeDto implements Representative {
   representative_id?: number;
 
   @ApiProperty({ example: 'Representative' })
-  @Column({ length: 100 })
+  @Column({ length: 100 , nullable: true})
   position: string;
 
   @ApiProperty({ example: 'Time is gold.' })
@@ -29,19 +29,19 @@ export class RepresentativeDto implements Representative {
   platform: string;
 
   //Relations
-  @ApiProperty({ required: false, type: () => CandidateDto })
-  @ManyToOne(() => CandidateDto, (candidate) => candidate.rep)
-  candidate: CandidateDto;
+  // @ApiProperty({ required: false, type: () => CandidateDto })
+  // @ManyToOne(() => CandidateDto, (candidate) => candidate.rep)
+  // candidate: CandidateDto;
   
   @ApiProperty({ required: false, type: () => StudentDto })
   @ManyToOne(() => StudentDto, (student) => student.rep)
-  student: StudentDto[];
+  student: StudentDto;
 
   @ApiProperty({ required: false, type: () => ElectionDto })
   @ManyToOne(() => ElectionDto, (election) => election.rep)
-  election: ElectionDto[];
+  election: ElectionDto;
 
-  @ApiProperty({ required: false, type: () => VoteRepDto })
-  @OneToMany(() => VoteRepDto, (voterep) => voterep.rep)
-  voterep: VoteRepDto[];
+  // @ApiProperty({ required: false, type: () => VoteRepDto })
+  // @OneToMany(() => VoteRepDto, (voterep) => voterep.rep)
+  // voterep: VoteRepDto;
 }
