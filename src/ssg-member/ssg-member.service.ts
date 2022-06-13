@@ -15,7 +15,7 @@ export class SsgMemberService {
   }
   async findAll(): Promise<SsgMemberDto[]> {
     return this.SsgMemberRepository.find({
-      relations: ['votessg'],
+      relations: ['student'],
     });
   }
   async findOne(ssg_id: number): Promise<SsgMemberDto> {

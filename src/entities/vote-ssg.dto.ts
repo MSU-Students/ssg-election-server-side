@@ -27,7 +27,7 @@ export class VoteSsgDto implements VoteSsg {
 
   @ApiProperty({ example: '4th' })
   @Column({ length: 100 })
-  academic_yr: string;
+  voter_status: string;
 
   @ApiProperty({ example: 'February 28, 2022' })
   @Column({ length: 100 })
@@ -40,7 +40,4 @@ export class VoteSsgDto implements VoteSsg {
   @ApiProperty({ required: false, type: () => StudentDto })
   @ManyToOne(() => StudentDto, (student) => student.votessg, { nullable: true })
   student: StudentDto;
-
-  @ManyToMany(() => SsgMemberDto, (primeMinister) => primeMinister.votessg, { nullable: true })
-  primeMinister: SsgMemberDto[];
 }

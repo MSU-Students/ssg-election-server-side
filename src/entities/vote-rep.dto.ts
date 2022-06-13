@@ -34,6 +34,10 @@ export class VoteRepDto implements VoteRep {
   @ApiProperty({ example: '12:24' })
   @Column({ length: 100 })
   time: string;
+  
+  @ApiProperty({ example: 'Not vote yet' })
+  @Column({ length: 100 })
+  voter_status: string;
 
   @ApiProperty({ required: false, type: () => StudentDto })
   @ManyToOne(() => StudentDto, (student) => student.voterep, { nullable: true })

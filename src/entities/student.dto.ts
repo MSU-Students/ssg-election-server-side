@@ -1,3 +1,4 @@
+import { SsgMemberDto } from './ssg-member.dto';
 import { RepresentativeDto } from 'src/entities/representative.dto';
 import { PositionDto } from './position.dto';
 import { CandidateDto } from 'src/entities/candidate.dto';
@@ -73,6 +74,9 @@ export class StudentDto implements Student {
 
   @OneToMany(() => RepresentativeDto, (rep) => rep.student)
   rep: RepresentativeDto[];
+
+  @OneToMany(() => SsgMemberDto, (ssg) => ssg.student)
+  ssg: SsgMemberDto[];
 
   @OneToMany(() => PositionDto, (position) => position.student)
   position: PositionDto[];
