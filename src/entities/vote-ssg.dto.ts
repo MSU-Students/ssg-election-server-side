@@ -25,10 +25,6 @@ export class VoteSsgDto implements VoteSsg {
   @ManyToOne(() => StudentDto, (secretary) => secretary.secretaryInfo)
   secretary: StudentDto;
 
-  @ApiProperty({ example: '4th' })
-  @Column({ length: 100 })
-  voter_status: string;
-
   @ApiProperty({ example: 'February 28, 2022' })
   @Column({ length: 100 })
   date: string;

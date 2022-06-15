@@ -15,7 +15,7 @@ export class CandidateService {
   }
   async findAll(): Promise<CandidateDto[]> {
     return this.candidateRepository.find({
-      relations: ['election', 'student'],
+      relations: ['election', 'student', 'user'],
     });
   }
   async findOne(candidate_id: number): Promise<CandidateDto> {

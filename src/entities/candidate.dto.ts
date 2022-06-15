@@ -1,3 +1,4 @@
+import { UserDto } from './../user/user.entity';
 import { RepresentativeDto } from 'src/entities/representative.dto';
 import { Representative } from './../interfaces/representative.interface';
 import { StudentDto } from 'src/entities/student.dto';
@@ -33,6 +34,10 @@ export class CandidateDto implements Candidate {
   @ApiProperty({ required: false, type: () => StudentDto })
   @ManyToOne(() => StudentDto, (student) => student.candidate)
   student: StudentDto;
+
+  @ApiProperty({ required: false, type: () => UserDto })
+  @ManyToOne(() => UserDto, (user) => user.candidate, { nullable: true })
+  user: UserDto;
   
   // @ManyToOne(() => RepresentativeDto, (rep) => rep.candidate)
   // rep: RepresentativeDto;

@@ -1,3 +1,4 @@
+import { UserDto } from './../user/user.entity';
 import { ElectionDto } from './election.dto';
 import { StudentDto } from './student.dto';
 import { CandidateDto } from './candidate.dto';
@@ -28,6 +29,10 @@ export class RepresentativeDto implements Representative {
   @Column({ length: 1000 , nullable: true})
   platform: string;
 
+  @ApiProperty({ example: '4th' })
+  @Column({ length: 100 , nullable: true})
+  voter_status: string;
+
   //Relations
   // @ApiProperty({ required: false, type: () => CandidateDto })
   // @ManyToOne(() => CandidateDto, (candidate) => candidate.rep)
@@ -40,6 +45,7 @@ export class RepresentativeDto implements Representative {
   @ApiProperty({ required: false, type: () => ElectionDto })
   @ManyToOne(() => ElectionDto, (election) => election.rep)
   election: ElectionDto;
+
 
   // @ApiProperty({ required: false, type: () => VoteRepDto })
   // @OneToMany(() => VoteRepDto, (voterep) => voterep.rep)

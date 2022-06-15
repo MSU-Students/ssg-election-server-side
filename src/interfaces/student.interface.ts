@@ -11,4 +11,5 @@ export interface Student {
   course: string;
   department: string;
   student_type: string;
+  voter_status: string;
 }

@@ -1,3 +1,5 @@
+import { CandidateDto } from './../entities/candidate.dto';
+import { RepresentativeDto } from './../entities/representative.dto';
 import { AdminDto } from 'src/entities/admin.dto';
 import { VoteSsgDto } from './../entities/vote-ssg.dto';
 import { VoteRepDto } from 'src/entities/vote-rep.dto';
@@ -40,18 +42,27 @@ export class UserDto implements User {
   @Column({ length: 255, default: '' })
   refreshToken?: string;
 
+  @ManyToOne(() => CandidateDto, (candidate) => candidate.user, {
+    onDelete: 'CASCADE',
+    eager: true,
+  })
+  candidate: CandidateDto;
+
   @ApiProperty({ required: false, type: () => StudentDto })
-  @ManyToOne(() => StudentDto, (student) => student.user, { onDelete: 'CASCADE', eager: true })
+  @ManyToOne(() => StudentDto, (student) => student.user, {
+    onDelete: 'CASCADE',
+    eager: true,
+  })
   student: StudentDto;
 
   @ApiProperty({ required: false, type: () => AdminDto })
   @ManyToOne(() => AdminDto, (admin) => admin.user)
   admin: AdminDto;
 
-  @ApiProperty({type: () => VoteRepDto })
-  @ApiProperty({ required: false, type: VoteRepDto})
+  @ApiProperty({ type: () => VoteRepDto })
+  @ApiProperty({ required: false, type: VoteRepDto })
   vote: VoteRepDto;
 
-  @ApiProperty({ required: false, type: VoteSsgDto})
+  @ApiProperty({ required: false, type: VoteSsgDto })
   votessg: VoteSsgDto;
 }

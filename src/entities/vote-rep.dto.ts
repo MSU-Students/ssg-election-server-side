@@ -1,3 +1,4 @@
+import { UserDto } from './../user/user.entity';
 import { ElectionDto } from 'src/entities/election.dto';
 import { SsgMemberDto } from 'src/entities/ssg-member.dto';
 import { ApiProperty } from '@nestjs/swagger';
@@ -35,9 +36,6 @@ export class VoteRepDto implements VoteRep {
   @Column({ length: 100 })
   time: string;
   
-  @ApiProperty({ example: 'Not vote yet' })
-  @Column({ length: 100 })
-  voter_status: string;
 
   @ApiProperty({ required: false, type: () => StudentDto })
   @ManyToOne(() => StudentDto, (student) => student.voterep, { nullable: true })

@@ -58,6 +58,10 @@ export class StudentDto implements Student {
   @ApiProperty({ default: 'regular' })
   @Column({ length: 100 })
   student_type: 'regular' | 'representative';
+  
+  @ApiProperty({ example: 'Not vote yet' })
+  @Column({ length: 100 , nullable: true})
+  voter_status: string;
 
   @ApiProperty({ required: false })
   @Column({ nullable: true })
