@@ -14,7 +14,7 @@ export class AdminService {
     return this.adminRepository.save(application);
   }
   async findAll(): Promise<AdminDto[]> {
-    return this.adminRepository.find({ relations: ['user'] });
+    return this.adminRepository.find();
   }
   async findOne(admin_id: number): Promise<AdminDto> {
     return this.adminRepository.findOne(admin_id);
