@@ -25,7 +25,7 @@ export class RegisterUserDto implements IUser {
   @Column({ length: 100 })
   status: 'active' | 'disabled';
 
-  @ApiProperty({ default: 'voter' })
+  @ApiProperty({ example: 'voter' })
   @Column({ length: 100 })
   userType: 'voter' | 'admin' | 'rep' | 'ssg';
 }

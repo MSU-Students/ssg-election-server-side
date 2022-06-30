@@ -15,7 +15,7 @@ export class RepresentativeService {
   }
   async findAll(): Promise<RepresentativeDto[]> {
     return this.representativeRepository.find({
-      relations: ['election', 'student'],
+      relations: ['election', 'student', 'user'],
     });
   }
   async findOne(representative_id: number): Promise<RepresentativeDto> {

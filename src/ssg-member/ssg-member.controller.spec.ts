@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { SsgMemberController } from './ssg-member.controller';
+import { ssgMemberController } from './ssg-member.controller';
 
 describe('SsgMemberController', () => {
-  let controller: SsgMemberController;
+  let controller: ssgMemberController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [SsgMemberController],
+      controllers: [ssgMemberController],
     }).compile();
 
-    controller = module.get<SsgMemberController>(SsgMemberController);
+    controller = module.get<ssgMemberController>(ssgMemberController);
   });
 
   it('should be defined', () => {

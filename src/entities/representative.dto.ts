@@ -46,6 +46,10 @@ export class RepresentativeDto implements Representative {
   @ManyToOne(() => ElectionDto, (election) => election.rep)
   election: ElectionDto;
 
+  @ApiProperty({ required: false, type: () => UserDto })
+  @ManyToOne(() => UserDto, (user) => user.rep, { nullable: true })
+  user: UserDto;
+
 
   // @ApiProperty({ required: false, type: () => VoteRepDto })
   // @OneToMany(() => VoteRepDto, (voterep) => voterep.rep)

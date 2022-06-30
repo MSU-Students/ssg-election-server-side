@@ -1,3 +1,4 @@
+import { UserDto } from './../user/user.entity';
 import { StudentDto } from './student.dto';
 import { ElectionDto } from 'src/entities/election.dto';
 import {
@@ -31,4 +32,8 @@ export class SsgMemberDto implements SsgMember {
   @ApiProperty({ required: false, type: () => StudentDto })
   @ManyToOne(() => StudentDto, (student) => student.ssg)
   student: StudentDto;
+
+  @ApiProperty({ required: false, type: () => UserDto })
+  @ManyToOne(() => UserDto, (user) => user.ssg, { nullable: true })
+  user: UserDto;
 }

@@ -1,3 +1,4 @@
+import { SsgMemberDto } from 'src/entities/ssg-member.dto';
 import { CandidateDto } from './../entities/candidate.dto';
 import { RepresentativeDto } from './../entities/representative.dto';
 import { AdminDto } from 'src/entities/admin.dto';
@@ -30,7 +31,7 @@ export class UserDto implements User {
   @Column({ length: 100 })
   password: string;
 
-  @ApiProperty({ default: 'voter' })
+  @ApiProperty({ example: 'voter' })
   @Column({ length: 100 })
   userType: 'voter' | 'admin' | 'rep' | 'ssg';
 
@@ -42,11 +43,14 @@ export class UserDto implements User {
   @Column({ length: 255, default: '' })
   refreshToken?: string;
 
-  @ManyToOne(() => CandidateDto, (candidate) => candidate.user, {
-    onDelete: 'CASCADE',
-    eager: true,
-  })
+  @ManyToOne(() => CandidateDto, (candidate) => candidate.user)
   candidate: CandidateDto;
+
+  @ManyToOne(() => RepresentativeDto, (rep) => rep.user)
+  rep: RepresentativeDto;
+
+  @ManyToOne(() => SsgMemberDto, (ssg) => ssg.user)
+  ssg: SsgMemberDto;
 
   @ApiProperty({ required: false, type: () => StudentDto })
   @ManyToOne(() => StudentDto, (student) => student.user, {

@@ -1,3 +1,4 @@
+import { JwtAuthGuard } from './jwt-auth.guard';
 import {
   Body,
   Controller,
@@ -6,6 +7,7 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import {
   ApiBearerAuth,
@@ -53,14 +55,16 @@ export class UserController {
     };
   }
 
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
   @ApiOperation({
     summary: 'Update Users by id',
     operationId: 'UpdateUsers',
   })
   @ApiResponse({ status: 200, type: UserDto })
   @Put(':account_id')
-  async update(@Param('account_id') id: number, @Body() job: UserDto) {
-    return this.usersService.update(id, job);
+  async update(@Param('account_id') id: number, @Body() user: UserDto) {
+    return this.usersService.update(id, user);
   }
 
   @ApiOperation({
