@@ -21,8 +21,8 @@ export class SsgMemberDto implements SsgMember {
   @PrimaryGeneratedColumn()
   ssg_id?: number;
 
-  @ApiProperty({ example: '2018' })
-  @Column({ length: 100 })
+  @ApiProperty({ example: '2018', required: false })
+  @Column({ length: 100, nullable: true })
   academic_yr: string;
 
   @ApiProperty({ example: 'Chief Executive' })

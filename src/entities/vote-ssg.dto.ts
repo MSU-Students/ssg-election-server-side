@@ -25,6 +25,10 @@ export class VoteSsgDto implements VoteSsg {
   @Column({ length: 100 })
   time: string;
 
+  @ApiProperty({ example: '2022-2023', required: false })
+  @Column({ nullable: true })
+  academic_yr: string;
+
   @ApiProperty({ required: false, type: () => StudentDto })
   @ManyToOne(() => StudentDto, (prime) => prime.primeInfo)
   prime: StudentDto;
