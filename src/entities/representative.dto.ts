@@ -21,6 +21,22 @@ export class RepresentativeDto implements Representative {
   @PrimaryGeneratedColumn()
   representative_id?: number;
 
+  @ApiProperty({ example: '01', required: false })
+  @Column({ nullable: true })
+  school_id: number;
+
+  @ApiProperty({ example: 'Najmah' })
+  @Column({ length: 100 })
+  first_name: string;
+
+  @ApiProperty({ example: 'Angni', required: false })
+  @Column({ length: 100 })
+  middle_name: string;
+
+  @ApiProperty({ example: 'Omar' })
+  @Column({ length: 100 })
+  last_name: string;
+
   @ApiProperty({ example: 'Representative' })
   @Column({ length: 100 , nullable: true})
   position: string;
@@ -32,6 +48,8 @@ export class RepresentativeDto implements Representative {
   @ApiProperty({ example: '4th' })
   @Column({ length: 100 , nullable: true})
   voter_status: string;
+
+
 
   //Relations
   // @ApiProperty({ required: false, type: () => CandidateDto })

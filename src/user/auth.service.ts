@@ -94,7 +94,7 @@ export class AuthService {
       .join('');
   }
   async register(user: UserDto): Promise<UserDto> {
-    if (user.userType != 'admin') {
+    // if (user.userType != 'admin') {
       const student = typeof user.student == 'number' ? 
         await this.studentService.findOne(user.student) : user.student;
       const name = `${student.first_name}${student.last_name}${student.middle_name}`;
@@ -103,10 +103,10 @@ export class AuthService {
   
       user.username = username;
       user.password = username + String(student.school_id || 0);
-    } else if(user.refreshToken != '559') {
-      throw new HttpException('Unauthorized registration', HttpStatus.FORBIDDEN);
-    }
-    user.refreshToken = undefined;
+    // } else if(user.refreshToken != '559') {
+    //   throw new HttpException('Unauthorized registration', HttpStatus.FORBIDDEN);
+    // }
+    // user.refreshToken = undefined;
     const foundUser = await this.userService.findByUsername(user.username);
     if (foundUser) {
       throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);

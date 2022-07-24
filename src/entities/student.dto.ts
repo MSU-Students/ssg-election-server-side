@@ -2,7 +2,13 @@ import { SsgMemberDto } from './ssg-member.dto';
 import { RepresentativeDto } from 'src/entities/representative.dto';
 import { PositionDto } from './position.dto';
 import { CandidateDto } from 'src/entities/candidate.dto';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import {
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+} from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { Student } from '../interfaces/student.interface';
 import { UserDto } from '../user/user.entity';
@@ -58,9 +64,9 @@ export class StudentDto implements Student {
   @ApiProperty({ default: 'regular' })
   @Column({ length: 100 })
   student_type: 'regular' | 'representative';
-  
+
   @ApiProperty({ example: 'Not vote yet' })
-  @Column({ length: 100 , nullable: true})
+  @Column({ length: 100, nullable: true })
   voter_status: string;
 
   @ApiProperty({ required: false })
@@ -81,9 +87,6 @@ export class StudentDto implements Student {
 
   @OneToMany(() => SsgMemberDto, (ssg) => ssg.student)
   ssg: SsgMemberDto[];
-
-  @OneToMany(() => PositionDto, (position) => position.student)
-  position: PositionDto[];
 
   //--------vote rep
 
@@ -106,4 +109,47 @@ export class StudentDto implements Student {
 
   @OneToMany(() => VoteSsgDto, (secretaryInfo) => secretaryInfo.secretary)
   secretaryInfo: VoteSsgDto[];
+
+  //-----------position Type
+  @OneToMany(() => PositionDto, (chief) => chief.chiefJustice)
+  chief: PositionDto[];
+
+  @OneToMany(() => PositionDto, (associate) => associate.associateJustice)
+  associate: PositionDto[];
+
+  @OneToMany(() => PositionDto, (speaker) => speaker.speakerHouse)
+  speaker: PositionDto[];
+
+  @OneToMany(() => PositionDto, (internal) => internal.internalDeputy)
+  internal: PositionDto[];
+
+  @OneToMany(() => PositionDto, (external) => external.externalDeputy)
+  external: PositionDto[];
+
+  @OneToMany(() => PositionDto, (health) => health.ministerHealth)
+  health: PositionDto[];
+
+  @OneToMany(() => PositionDto, (info) => info.ministerInfo)
+  info: PositionDto[];
+
+  @OneToMany(() => PositionDto, (planning) => planning.ministerPlanning)
+  planning: PositionDto[];
+
+  @OneToMany(
+    () => PositionDto,
+    (acadAffairs) => acadAffairs.ministerAcadAffairs,
+  )
+  acadAffairs: PositionDto[];
+
+  @OneToMany(() => PositionDto, (finance) => finance.ministerFinance)
+  finance: PositionDto[];
+
+  @OneToMany(() => PositionDto, (audit) => audit.commissionAudit)
+  audit: PositionDto[];
+
+  @OneToMany(() => PositionDto, (election) => election.commissionElection)
+  election: PositionDto[];
+
+  @OneToMany(() => PositionDto, (welfare) => welfare.commissionWelfare)
+  welfare: PositionDto[];
 }

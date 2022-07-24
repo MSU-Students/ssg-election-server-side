@@ -15,8 +15,42 @@ export class PositionService {
   }
   async findAll(): Promise<PositionDto[]> {
     return this.positionRepository.find({
-      relations: ['student '],
+      relations: ['chiefJustice', 
+      'associateJustice', 
+      'speakerHouse', 
+      'internalDeputy', 
+      'externalDeputy', 
+      'ministerHealth', 
+      'ministerInfo', 
+      'ministerPlanning', 
+      'ministerAcadAffairs', 
+      'ministerFinance', 
+      'commissionAudit', 
+      'commissionElection', 
+      'commissionWelfare', 
+      'ssg'],
     });
+  }
+  async find(student_id: number) {
+    const votes = await this.positionRepository.find({
+      relations: ['chiefJustice', 
+      'associateJustice', 
+      'speakerHouse', 
+      'internalDeputy', 
+      'externalDeputy', 
+      'ministerHealth', 
+      'ministerInfo', 
+      'ministerPlanning', 
+      'ministerAcadAffairs', 
+      'ministerFinance', 
+      'commissionAudit', 
+      'commissionElection', 
+      'commissionWelfare',],
+      where: {
+        student: student_id
+      }
+    });
+    return votes[0] || undefined;
   }
   async findOne(position_id: number): Promise<PositionDto> {
     return this.positionRepository.findOne(position_id);

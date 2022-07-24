@@ -15,61 +15,61 @@ export class PositionDto implements Position {
   @PrimaryGeneratedColumn()
   position_id?: number;
 
-  @ApiProperty({ example: 'Najmah A. Omar' })
-  @Column({ length: 100 })
-  chiefJustice: string;
+  @ApiProperty({ type: () => StudentDto })
+  @ManyToOne(() => StudentDto, (chiefJustice) => chiefJustice.chief)
+  chiefJustice: StudentDto;
 
-  @ApiProperty({ example: 'Najmah A. Omar' })
-  @Column({ length: 100 })
-  associateJustice: string;
+  @ApiProperty({ type: () => StudentDto })
+  @ManyToOne(() => StudentDto, (associateJustice) => associateJustice.associate)
+  associateJustice: StudentDto;
 
-  @ApiProperty({ example: 'Najmah A. Omar' })
-  @Column({ length: 100 })
+  @ApiProperty({ type: () => StudentDto })
+  @ManyToOne(() => StudentDto, (speakerHouse) => speakerHouse.speaker)
   speakerHouse: string;
 
-  @ApiProperty({ example: 'Najmah A. Omar' })
-  @Column({ length: 100 })
+  @ApiProperty({ type: () => StudentDto })
+  @ManyToOne(() => StudentDto, (internalDeputy) => internalDeputy.internal)
   internalDeputy: string;
 
-  @ApiProperty({ example: 'Najmah A. Omar' })
-  @Column({ length: 100 })
+  @ApiProperty({ type: () => StudentDto })
+  @ManyToOne(() => StudentDto, (externalDeputy) => externalDeputy.external)
   externalDeputy: string;
 
-  @ApiProperty({ example: 'Najmah A. Omar' })
-  @Column({ length: 100 })
+  @ApiProperty({ type: () => StudentDto })
+  @ManyToOne(() => StudentDto, (ministerHealth) => ministerHealth.health)
   ministerHealth: string;
 
-  @ApiProperty({ example: 'Najmah A. Omar' })
-  @Column({ length: 100 })
+  @ApiProperty({ type: () => StudentDto })
+  @ManyToOne(() => StudentDto, (ministerInfo) => ministerInfo.info)
   ministerInfo: string;
 
-  @ApiProperty({ example: 'Najmah A. Omar' })
-  @Column({ length: 100 })
+  @ApiProperty({ type: () => StudentDto })
+  @ManyToOne(() => StudentDto, (ministerPlanning) => ministerPlanning.planning)
   ministerPlanning: string;
 
-  @ApiProperty({ example: 'Najmah A. Omar' })
-  @Column({ length: 100 })
+  @ApiProperty({ type: () => StudentDto })
+  @ManyToOne(() => StudentDto, (ministerAcadAffairs) => ministerAcadAffairs.acadAffairs)
   ministerAcadAffairs: string;
 
-  @ApiProperty({ example: 'Najmah A. Omar' })
-  @Column({ length: 100 })
+  @ApiProperty({ type: () => StudentDto })
+  @ManyToOne(() => StudentDto, (ministerFinance) => ministerFinance.finance)
   ministerFinance: string;
 
-  @ApiProperty({ example: 'Najmah A. Omar' })
-  @Column({ length: 100 })
+  @ApiProperty({ type: () => StudentDto })
+  @ManyToOne(() => StudentDto, (commissionAudit) => commissionAudit.audit)
   commissionAudit: string;
 
-  @ApiProperty({ example: 'Najmah A. Omar' })
-  @Column({ length: 100 })
+  @ApiProperty({ type: () => StudentDto })
+  @ManyToOne(() => StudentDto, (commissionElection) => commissionElection.election)
   commissionElection: string;
 
-  @ApiProperty({ example: 'Najmah A. Omar' })
-  @Column({ length: 100 })
+  @ApiProperty({ type: () => StudentDto })
+  @ManyToOne(() => StudentDto, (commissionWelfare) => commissionWelfare.welfare)
   commissionWelfare: string;
 
-  @ApiProperty({ required: false, type: () => StudentDto })
-  @ManyToOne(() => StudentDto, (student) => student.position, {
+  @ApiProperty({ required: false, type: () => SsgMemberDto })
+  @ManyToOne(() => SsgMemberDto, (ssgMember) => ssgMember.positiontype, {
     nullable: true,
   })
-  student: StudentDto;
+  ssgMember: SsgMemberDto;
 }
