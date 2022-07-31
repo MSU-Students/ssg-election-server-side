@@ -25,37 +25,35 @@ export class RepresentativeDto implements Representative {
   @Column({ nullable: true })
   school_id: number;
 
-  @ApiProperty({ example: 'Najmah' })
-  @Column({ length: 100 })
+  @ApiProperty({ example: 'Najmah', required: false })
+  @Column({ length: 100, nullable: true  })
   first_name: string;
 
   @ApiProperty({ example: 'Angni', required: false })
-  @Column({ length: 100 })
+  @Column({ length: 100, nullable: true  })
   middle_name: string;
 
-  @ApiProperty({ example: 'Omar' })
-  @Column({ length: 100 })
+  @ApiProperty({ example: 'Omar', required: false })
+  @Column({ length: 100, nullable: true  })
   last_name: string;
 
   @ApiProperty({ example: 'Representative' })
-  @Column({ length: 100 , nullable: true})
+  @Column({ length: 100, nullable: true })
   position: string;
 
   @ApiProperty({ example: 'Time is gold.' })
-  @Column({ length: 1000 , nullable: true})
+  @Column({ length: 1000, nullable: true })
   platform: string;
 
   @ApiProperty({ example: '4th' })
-  @Column({ length: 100 , nullable: true})
+  @Column({ length: 100, nullable: true })
   voter_status: string;
-
-
 
   //Relations
   // @ApiProperty({ required: false, type: () => CandidateDto })
   // @ManyToOne(() => CandidateDto, (candidate) => candidate.rep)
   // candidate: CandidateDto;
-  
+
   @ApiProperty({ required: false, type: () => StudentDto })
   @ManyToOne(() => StudentDto, (student) => student.rep)
   student: StudentDto;
@@ -67,7 +65,6 @@ export class RepresentativeDto implements Representative {
   @ApiProperty({ required: false, type: () => UserDto })
   @ManyToOne(() => UserDto, (user) => user.rep, { nullable: true })
   user: UserDto;
-
 
   // @ApiProperty({ required: false, type: () => VoteRepDto })
   // @OneToMany(() => VoteRepDto, (voterep) => voterep.rep)

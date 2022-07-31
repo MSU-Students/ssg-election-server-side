@@ -28,7 +28,7 @@ export class PositionService {
       'commissionAudit', 
       'commissionElection', 
       'commissionWelfare', 
-      'ssg'],
+      'ssgMember'],
     });
   }
   async find(student_id: number) {
